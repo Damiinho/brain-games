@@ -28,6 +28,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "games",
+    element: <Game />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
