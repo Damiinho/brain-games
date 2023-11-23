@@ -4,9 +4,12 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [plusTime, setPlusTime] = useState(2);
 
   const providerValue = {
     windowWidth,
+    plusTime,
+    setPlusTime,
   };
 
   useEffect(() => {

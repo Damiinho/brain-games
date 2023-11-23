@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Header from "./Header";
-import { Button } from "@mui/material";
 import AppProvider from "./contexts/AppContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
-import Contact from "./routes/contacts";
 import Game from "./routes/game";
+import PlusGame from "./routes/Games/plus";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +17,16 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "",
+        element: <App />,
+      },
+      {
         path: "game",
         element: <Game />,
       },
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
+        path: "plus",
+        element: <PlusGame />,
       },
     ],
   },
@@ -39,9 +41,6 @@ root.render(
   <React.StrictMode>
     <AppProvider>
       <RouterProvider router={router} />
-      <Header />
-      <Button>je</Button>
-      <App />
     </AppProvider>
   </React.StrictMode>
 );
