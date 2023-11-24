@@ -30,6 +30,9 @@ header {
   align-items: center;
   height: 100px;
   gap: 30px;
+  a {
+    text-decoration: none;
+  }
   .title {
     font-size: 60px;
     font-family: Raleway, serif;
@@ -74,22 +77,59 @@ main {
       }
     }
     &__options {
-      margin-top: 30px;
+      width: 280px;
+      margin: 50px auto 0;
       font-size: 28px;
       text-align: center;
       &-main {
-        &__time {
+        margin-top: 30px;
+        &__element {
+          margin-top: 10px;
           display: flex;
-          gap: 50px;
+          font-size: 25px;
+          justify-content: space-between;
+          align-items: center;
+
+          p {
+            width: 70px;
+          }
         }
       }
     }
 
     &__start {
-      margin-top: 30px;
+      margin-top: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    &__game {
+      font-family: Changa, serif;
+      &-score {
+        text-align: center;
+        font-size: 25px;
+      }
+      &-time {
+        position: relative;
+        height: 25px;
+        width: 65%;
+        margin: 0 auto;
+        background: linear-gradient(
+          90deg,
+          rgba(55, 130, 187, 1) 0%,
+          rgba(212, 0, 145, 1) 100%
+        );
+      }
+      &-challenge {
+        text-align: center;
+        font-size: 100px;
+      }
+      &-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
     }
   }
 }

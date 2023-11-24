@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import Game from "./routes/game";
-import PlusGame from "./routes/Games/plus";
+import PlusGame from "./routes/Games/Plus/plus";
 
 const router = createBrowserRouter([
   {
