@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -8,7 +8,6 @@ const PlusGameContent = () => {
   const {
     plusLevel,
     plusTime,
-    isPlusStart,
     setIsPlusStart,
     plusCurrentScore,
     setPlusCurrentScore,
@@ -18,7 +17,7 @@ const PlusGameContent = () => {
     setPlusBestScore,
   } = useContext(AppContext);
   const traineeNumbers = [1, 2, 3, 4, 5];
-  const [currentTime, setCurrentTime] = useState(plusTime);
+  // const [currentTime, setCurrentTime] = useState(plusTime);
 
   const bestResult = plusBestScore.find(
     (element) => element.level === plusLevel && element.time === plusTime
@@ -86,19 +85,19 @@ const PlusGameContent = () => {
     };
   }, [handleKeyDown]); // Użyj handleKeyDown jako zależności, aby uniknąć błędów związanych z domknięciem
 
-  useEffect(() => {
-    if (currentTime > 0) {
-      const timer = setTimeout(() => {
-        const newTime = Number((currentTime - 0.1).toFixed(1));
-        setCurrentTime(newTime);
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      if (isCorrect) {
-        handleIncorrect();
-      } else handleCorrect();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (currentTime > 0) {
+  //     const timer = setTimeout(() => {
+  //       const newTime = Number((currentTime - 0.1).toFixed(1));
+  //       setCurrentTime(newTime);
+  //     }, 100);
+  //     return () => clearTimeout(timer);
+  //   } else {
+  //     if (isCorrect) {
+  //       handleIncorrect();
+  //     } else handleCorrect();
+  //   }
+  // }, []);
 
   const buttonStyle = {
     display: "flex",
@@ -110,9 +109,7 @@ const PlusGameContent = () => {
   };
   const Challenge = () => (
     <>
-      <div className="plus__game-score">
-        Current score: {plusCurrentScore}, timer: {currentTime}
-      </div>
+      <div className="plus__game-score">Current score: {plusCurrentScore}</div>
       <div className="plus__game-time">
         <div
           className="plus__game-time__contain"
