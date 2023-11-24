@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -34,47 +34,75 @@ const PlusGameContent = () => {
   console.log(visibleResult);
   console.log(isCorrect);
 
-  const handleIncorrect = () => {
-    if (plusCurrentScore > bestResult.best) {
-      setPlusBestScore((prevScore) =>
-        prevScore.map((el) =>
-          el.level === plusLevel && el.time === plusTime
-            ? { ...el, best: plusCurrentScore }
-            : el
-        )
-      );
+  const handleIncorrect = useCallback(() => {
+    if (!plusIsWrong) {
+      if (plusCurrentScore > bestResult.best) {
+        setPlusBestScore((prevScore) =>
+          prevScore.map((el) =>
+            el.level === plusLevel && el.time === plusTime
+              ? { ...el, best: plusCurrentScore }
+              : el
+          )
+        );
+      }
+      if (!isCorrect) {
+        setPlusCurrentScore(plusCurrentScore + 1);
+      } else {
+        setPlusIsWrong(true);
+      }
     }
-    if (!isCorrect) {
-      setPlusCurrentScore(plusCurrentScore + 1);
-    } else {
-      setPlusIsWrong(true);
-    }
-  };
-  const handleCorrect = () => {
-    if (plusCurrentScore > bestResult.best) {
-      setPlusBestScore((prevScore) =>
-        prevScore.map((el) =>
-          el.level === plusLevel && el.time === plusTime
-            ? { ...el, best: plusCurrentScore }
-            : el
-        )
-      );
-    }
-    if (isCorrect) {
-      setPlusCurrentScore(plusCurrentScore + 1);
-    } else {
-      setPlusIsWrong(true);
-    }
-  };
+  }, [
+    isCorrect,
+    bestResult,
+    plusCurrentScore,
+    plusIsWrong,
+    plusLevel,
+    plusTime,
+    setPlusBestScore,
+    setPlusCurrentScore,
+    setPlusIsWrong,
+  ]);
 
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowRight") {
-      handleCorrect();
+  const handleCorrect = useCallback(() => {
+    if (!plusIsWrong) {
+      if (plusCurrentScore > bestResult.best) {
+        setPlusBestScore((prevScore) =>
+          prevScore.map((el) =>
+            el.level === plusLevel && el.time === plusTime
+              ? { ...el, best: plusCurrentScore }
+              : el
+          )
+        );
+      }
+      if (isCorrect) {
+        setPlusCurrentScore(plusCurrentScore + 1);
+      } else {
+        setPlusIsWrong(true);
+      }
     }
-    if (e.key === "ArrowLeft") {
-      handleIncorrect();
-    }
-  };
+  }, [
+    isCorrect,
+    bestResult,
+    plusCurrentScore,
+    plusIsWrong,
+    plusLevel,
+    plusTime,
+    setPlusBestScore,
+    setPlusCurrentScore,
+    setPlusIsWrong,
+  ]);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === "ArrowRight") {
+        handleCorrect();
+      }
+      if (e.key === "ArrowLeft") {
+        handleIncorrect();
+      }
+    },
+    [handleCorrect, handleIncorrect]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
