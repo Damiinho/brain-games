@@ -167,7 +167,7 @@ const QuizPanel = () => {
     <div className="plus__game">
       <div className="plus__game-score">Current score: {plusCurrentScore}</div>
       <Timer />
-      <div className="plus__game-challenge" style={{ width: "100%" }}>
+      <div className="plus__game-challenge">
         <Textfit mode="single">
           {currentPlusQuestion.firstNumber} + {currentPlusQuestion.secondNumber}{" "}
           = {currentPlusQuestion.visibleResult}
