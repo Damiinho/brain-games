@@ -4,7 +4,7 @@ import Timer from "./Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Textfit } from "react-textfit";
+import { Textfit } from "@ayushmw/react-textfit";
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { Textfit } from "react-textfit";
+import { Textfit } from "@ayushmw/react-textfit";
 
 const WrongAnswerPanel = () => {
   const {
