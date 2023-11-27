@@ -77,6 +77,10 @@ main {
     display: flex;
     align-items: center;
     gap: 20px;
+    &__math {
+      display: flex;
+      gap: 10px;
+    }
   }
 
   .plus {
@@ -121,6 +125,7 @@ main {
         width: 100%;
         &-main {
           display: flex;
+          justify-content: center;
           gap: 20px;
         }
       }

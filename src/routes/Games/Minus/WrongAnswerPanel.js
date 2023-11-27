@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { AdditionContext } from "../../../contexts/AdditionContext";
+import { SubtractionContext } from "../../../contexts/SubtractionContext";
 
 const WrongAnswerPanel = () => {
   const {
@@ -12,8 +12,8 @@ const WrongAnswerPanel = () => {
     setCurrentScore,
     setIsWrong,
     bestScore,
-  } = useContext(AdditionContext);
-  const { setIsPlusStart, windowWidth } = useContext(AppContext);
+  } = useContext(SubtractionContext);
+  const { setIsMinusStart, windowWidth } = useContext(AppContext);
   const bestResult = bestScore.find(
     (element) => element.level === level && element.time === time
   );
@@ -38,7 +38,7 @@ const WrongAnswerPanel = () => {
         <Button
           variant="contained"
           color="info"
-          onClick={() => setIsPlusStart(false)}
+          onClick={() => setIsMinusStart(false)}
           style={{
             fontFamily: "Changa, serif",
           }}

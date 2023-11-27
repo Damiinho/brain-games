@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from "react";
-import { AdditionContext } from "../../../contexts/AdditionContext";
+import { SubtractionContext } from "../../../contexts/SubtractionContext";
 import Timer from "./Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -27,7 +27,7 @@ const QuizPanel = () => {
     currentQuestion,
     numbers,
     setCurrentQuestion,
-  } = useContext(AdditionContext);
+  } = useContext(SubtractionContext);
 
   const newQuestion = useCallback(() => {
     const possibleNumbers =
@@ -57,7 +57,7 @@ const QuizPanel = () => {
 
     const first = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
     const second = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-    const result = first + second;
+    const result = first > second ? first - second : second - first;
     const possible = [result - 1, result, result + 1];
     setCurrentQuestion({
       firstNumber: first,
@@ -162,8 +162,10 @@ const QuizPanel = () => {
       <div className="plus__game-score">Current score: {currentScore}</div>
       <Timer />
       <div className="plus__game-challenge">
-        {currentQuestion.firstNumber} + {currentQuestion.secondNumber} ={" "}
-        {currentQuestion.visibleResult}
+        {currentQuestion.firstNumber > currentQuestion.secondNumber
+          ? `${currentQuestion.firstNumber} - ${currentQuestion.secondNumber}`
+          : `${currentQuestion.secondNumber} - ${currentQuestion.firstNumber}`}{" "}
+        = {currentQuestion.visibleResult}
       </div>
       <div className="plus__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>

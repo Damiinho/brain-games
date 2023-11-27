@@ -3,16 +3,22 @@ import LogoIMG from "../img/logobrain.png";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 export default function Root() {
-  const { setIsPlusStart } = useContext(AppContext);
+  const { setIsPlusStart, setIsMinusStart } = useContext(AppContext);
+
+  const resetFlag = () => {
+    setIsPlusStart(false);
+    setIsMinusStart(false);
+  };
+
   return (
     <>
       <header>
-        <Link to={`/`} onClick={() => setIsPlusStart(false)}>
+        <Link to={`/`} onClick={() => resetFlag()}>
           <div className="title">
             BRAIN<span className="title-go">GO</span>
           </div>
         </Link>
-        <Link to={`/`}>
+        <Link to={`/`} onClick={() => resetFlag()}>
           <img className="logo" src={LogoIMG} alt="logo" />
         </Link>
       </header>

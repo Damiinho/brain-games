@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import "./App.css";
-import AddToPhotosRoundedIcon from "@mui/icons-material/AddToPhotosRounded";
+import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
+import IndeterminateCheckBoxRoundedIcon from "@mui/icons-material/IndeterminateCheckBoxRounded";
 import { Link } from "react-router-dom";
 function App() {
   const buttonStyle = {
@@ -8,22 +9,47 @@ function App() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    gap: 20,
+    gap: 10,
   };
+
   const spanStyle = {
     color: "#ffe7dc",
-    fontSize: 30,
+    fontSize: 20,
     fontFamily: "Changa, serif",
+    margin: "3px 3px",
   };
 
   return (
     <div className="games">
       <div className="games__math">
         <Link to={`plus`}>
-          <Button size="large" variant="contained" style={{ opacity: 0.8 }}>
+          <Button
+            size="small"
+            variant="contained"
+            style={{
+              backgroundColor: "rgb(63, 130, 185, 0.7)",
+            }}
+          >
             <div style={buttonStyle}>
-              <span style={spanStyle}>plus</span>
-              <AddToPhotosRoundedIcon fontSize="large" corlor="secondary" />
+              <span style={spanStyle}>addition</span>
+              <AddBoxRoundedIcon fontSize="large" corlor="secondary" />
+            </div>
+          </Button>
+        </Link>
+        <Link to={`minus`}>
+          <Button
+            size="small"
+            variant="contained"
+            style={{
+              backgroundColor: "rgb(63, 130, 185, 0.7)",
+            }}
+          >
+            <div style={buttonStyle}>
+              <span style={spanStyle}>subtraction</span>
+              <IndeterminateCheckBoxRoundedIcon
+                fontSize="large"
+                corlor="secondary"
+              />
             </div>
           </Button>
         </Link>

@@ -5,7 +5,7 @@ import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { AdditionContext } from "../../../contexts/AdditionContext";
+import { SubtractionContext } from "../../../contexts/SubtractionContext";
 
 const StartPanel = () => {
   const {
@@ -20,8 +20,8 @@ const StartPanel = () => {
     setCurrentQuestion,
     numbers,
     setCurrentScore,
-  } = useContext(AdditionContext);
-  const { setIsPlusStart } = useContext(AppContext);
+  } = useContext(SubtractionContext);
+  const { setIsMinusStart } = useContext(AppContext);
 
   const buttonStyle = {
     display: "flex",
@@ -203,7 +203,7 @@ const StartPanel = () => {
             fontSize: windowWidth > 400 ? 25 : 20,
           }}
           onClick={() => {
-            setIsPlusStart(true);
+            setIsMinusStart(true);
             setIsWrong(false);
             const possibleNumbers =
               level === 1
@@ -234,7 +234,8 @@ const StartPanel = () => {
               possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
             const second =
               possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-            const result = first + second;
+
+            const result = first > second ? first - second : second - first;
             const possible = [result - 1, result, result + 1];
             setCurrentQuestion({
               firstNumber: first,

@@ -9,6 +9,7 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import Game from "./routes/game";
 import PlusGame from "./routes/Games/Plus/plus";
+import MinusGame from "./routes/Games/Minus/minus";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "plus",
         element: <PlusGame />,
+      },
+      {
+        path: "minus",
+        element: <MinusGame />,
       },
     ],
   },

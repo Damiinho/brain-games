@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { AdditionContext } from "../../../contexts/AdditionContext";
+import { SubtractionContext } from "../../../contexts/SubtractionContext";
 
 const Timer = () => {
   const { time, setCurrentTime, currentTime, setIsWrong } =
-    useContext(AdditionContext);
+    useContext(SubtractionContext);
 
   useEffect(() => {
     if (currentTime > 0) {
