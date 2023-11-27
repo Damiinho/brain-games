@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { Textfit } from "@ayushmw/react-textfit";
 
 const WrongAnswerPanel = () => {
   const {
@@ -34,11 +33,7 @@ const WrongAnswerPanel = () => {
             fontFamily: "Changa, serif",
           }}
         >
-          {windowWidth > 320 ? (
-            <Textfit mode="single">restart</Textfit>
-          ) : (
-            "restart"
-          )}
+          {windowWidth > 320 ? "restart" : "restart"}
         </Button>
         <Button
           variant="contained"
@@ -48,12 +43,10 @@ const WrongAnswerPanel = () => {
             fontFamily: "Changa, serif",
           }}
         >
-          {windowWidth > 320 ? <Textfit mode="single">back</Textfit> : "back"}
+          {windowWidth > 320 ? "back" : "back"}
         </Button>
       </div>
-      <div className="plus__game-challenge">
-        <Textfit mode="single">Wrong answer</Textfit>
-      </div>{" "}
+      <div className="plus__game-challenge">Wrong answer</div>{" "}
       <div className="plus__game-score">
         Last score: {plusCurrentScore}
         <br />

@@ -4,7 +4,6 @@ import Timer from "./Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Textfit } from "@ayushmw/react-textfit";
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",
@@ -168,10 +167,8 @@ const QuizPanel = () => {
       <div className="plus__game-score">Current score: {plusCurrentScore}</div>
       <Timer />
       <div className="plus__game-challenge">
-        <Textfit mode="single">
-          {currentPlusQuestion.firstNumber} + {currentPlusQuestion.secondNumber}{" "}
-          = {currentPlusQuestion.visibleResult}
-        </Textfit>
+        {currentPlusQuestion.firstNumber} + {currentPlusQuestion.secondNumber} ={" "}
+        {currentPlusQuestion.visibleResult}
       </div>
       <div className="plus__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>
