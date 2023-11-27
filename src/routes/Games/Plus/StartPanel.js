@@ -60,8 +60,11 @@ const StartPanel = () => {
             <div style={buttonStyle}>
               {windowWidth > 400 && (
                 <>
-                  <KeyboardBackspaceRoundedIcon />
-                  <>incorrect</>
+                  <div className="button-icon">
+                    {" "}
+                    <KeyboardBackspaceRoundedIcon />
+                  </div>
+                  <div className="button-text">incorrect</div>
                 </>
               )}
               <CancelIcon fontSize="large" />
@@ -71,8 +74,10 @@ const StartPanel = () => {
             <div style={buttonStyle}>
               {windowWidth > 400 && (
                 <>
-                  <EastRoundedIcon />
-                  <>correct</>
+                  <div className="button-icon">
+                    <EastRoundedIcon />
+                  </div>
+                  <div className="button-text">correct</div>
                 </>
               )}
               <CheckCircleIcon fontSize="large" />
@@ -186,10 +191,8 @@ const StartPanel = () => {
             </Select>
           </div>
         </div>
-        <div className="plus__options-main__best">
-          Best result: {bestResult.best}
-        </div>
-      </div>
+      </div>{" "}
+      <div className="plus__options-best">Best result: {bestResult.best}</div>
       <div className="plus__start">
         <Button
           variant="contained"

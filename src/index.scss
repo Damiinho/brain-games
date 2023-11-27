@@ -111,8 +111,17 @@ main {
             width: 70px;
           }
         }
-        &__best {
-          margin-top: 30px;
+      }
+      &-best {
+        font-size: 28px;
+        text-align: center;
+        margin-top: 30px;
+      }
+      @media only screen and (orientation: landscape) {
+        width: 100%;
+        &-main {
+          display: flex;
+          gap: 20px;
         }
       }
     }
@@ -152,6 +161,11 @@ main {
       }
     }
 
+    @media screen and (max-width: 600px) {
+      &__description {
+        font-size: 20px;
+      }
+    }
     @media screen and (max-width: 400px) {
       &__description {
         font-size: 16px;
@@ -173,6 +187,40 @@ main {
       }
       &__start {
         margin: 20px 0;
+      }
+    }
+    @media (hover: none) {
+      &__description {
+        font-size: 20px;
+      }
+      &__options {
+        font-size: 28px;
+      }
+      &__game {
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &-buttons {
+          button {
+            width: 100%;
+            height: 100px;
+            > div {
+              transform: scale(2);
+            }
+          }
+        }
+      }
+    }
+
+    @media (hover: none) {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .button-icon,
+      .button-text {
+        display: none;
       }
     }
   }
