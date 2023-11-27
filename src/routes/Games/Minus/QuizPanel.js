@@ -58,13 +58,22 @@ const QuizPanel = () => {
     const first = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
     const second = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
     const result = first > second ? first - second : second - first;
-    const possible = [result - 1, result, result + 1];
+    const possible = [
+      result,
+      result,
+      result,
+      result,
+      result - 2,
+      result - 1,
+      result + 2,
+      result + 1,
+    ];
     setCurrentQuestion({
       firstNumber: first,
       secondNumber: second,
       result: result,
       possibleResults: possible,
-      visibleResult: possible[Math.floor(Math.random() * 3)],
+      visibleResult: possible[Math.floor(Math.random() * 8)],
     });
     setCurrentTime(time);
   }, [time, numbers, setCurrentTime, setCurrentQuestion, level]);
