@@ -20,14 +20,7 @@ const WrongAnswerPanel = () => {
   );
   return (
     <div className="plus__game">
-      <div className="plus__game-score">
-        Last score: {plusCurrentScore}
-        <br />
-        Best score: {bestResult.best}
-      </div>
-      <div className="plus__game-challenge">
-        <Textfit mode="single">Wrong answer</Textfit>
-      </div>
+      {" "}
       <div className="plus__game-buttons">
         <Button
           variant="contained"
@@ -57,6 +50,14 @@ const WrongAnswerPanel = () => {
         >
           {windowWidth > 320 ? <Textfit mode="single">back</Textfit> : "back"}
         </Button>
+      </div>
+      <div className="plus__game-challenge">
+        <Textfit mode="single">Wrong answer</Textfit>
+      </div>{" "}
+      <div className="plus__game-score">
+        Last score: {plusCurrentScore}
+        <br />
+        Best score: {bestResult.best}
       </div>
     </div>
   );
