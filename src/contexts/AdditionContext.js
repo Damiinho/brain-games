@@ -146,7 +146,8 @@ export const AdditionProvider = ({ children }) => {
               result + 2,
               result + 1,
             ]
-          : [
+          : currentScore < 50
+          ? [
               result,
               result,
               result,
@@ -157,6 +158,24 @@ export const AdditionProvider = ({ children }) => {
               result - 1,
               result + 2,
               result + 1,
+              result + 10,
+              result - 10 > 0 ? result - 10 : result + 20,
+            ]
+          : [
+              result,
+              result,
+              result,
+              result,
+              result,
+              result,
+              result,
+              result,
+              result - 2,
+              result - 1,
+              result + 2,
+              result + 1,
+              result + 5,
+              result - 5 > 0 ? result - 5 : result + 15,
               result + 10,
               result - 10 > 0 ? result - 10 : result + 20,
             ]
@@ -173,7 +192,8 @@ export const AdditionProvider = ({ children }) => {
             result + 2,
             result + 1,
           ]
-        : [
+        : level === 4
+        ? [
             result,
             result,
             result,
@@ -184,6 +204,24 @@ export const AdditionProvider = ({ children }) => {
             result - 1,
             result + 2,
             result + 1,
+            result + 10,
+            result - 10 > 0 ? result - 10 : result + 20,
+          ]
+        : [
+            result,
+            result,
+            result,
+            result,
+            result,
+            result,
+            result,
+            result,
+            result - 2,
+            result - 1,
+            result + 2,
+            result + 1,
+            result + 5,
+            result - 5 > 0 ? result - 5 : result + 15,
             result + 10,
             result - 10 > 0 ? result - 10 : result + 20,
           ];
@@ -204,12 +242,16 @@ export const AdditionProvider = ({ children }) => {
                     ? 4
                     : currentScore < 25
                     ? 8
-                    : 10
+                    : currentScore < 50
+                    ? 12
+                    : 16
                   : level === 1
                   ? 4
                   : level > 1 && level < 4
                   ? 8
-                  : 10
+                  : level === 4
+                  ? 12
+                  : 16
               }`
           )
         ],
