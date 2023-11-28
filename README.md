@@ -2,7 +2,7 @@
 
  <img src="https://braingo.netlify.app/static/media/logobrain.bf5c1e692afb41eaa52b.png" alt="logo" width="200"/>
 
-# BRAINGO
+# [BRAINGO](https://braingo.netlify.app)
 
 ## Simple games to train your mind!
 
