@@ -52,9 +52,8 @@ const WrongAnswerPanel = () => {
         </Button>
       </div>
       <div className="plus__game-challenge">
-        {" "}
         <Textfit mode="single">Wrong answer</Textfit>
-      </div>{" "}
+      </div>
       <div className="plus__game-score">
         Last score: {currentScore}
         <br />
