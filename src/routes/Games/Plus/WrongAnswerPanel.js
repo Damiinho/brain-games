@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AdditionContext } from "../../../contexts/AdditionContext";
+import { Textfit } from "react-textfit";
 
 const WrongAnswerPanel = () => {
   const {
@@ -25,6 +26,7 @@ const WrongAnswerPanel = () => {
         <Button
           variant="contained"
           color="warning"
+          size="large"
           onClick={() => {
             setCurrentScore(0);
             setIsWrong(false);
@@ -40,6 +42,7 @@ const WrongAnswerPanel = () => {
         <Button
           variant="contained"
           color="info"
+          size="large"
           onClick={() => setIsPlusStart(false)}
           style={{
             fontFamily: "Changa, serif",
@@ -48,7 +51,10 @@ const WrongAnswerPanel = () => {
           {windowWidth > 320 ? "back" : "back"}
         </Button>
       </div>
-      <div className="plus__game-challenge">Wrong answer</div>{" "}
+      <div className="plus__game-challenge">
+        {" "}
+        <Textfit mode="single">Wrong answer</Textfit>
+      </div>{" "}
       <div className="plus__game-score">
         Last score: {currentScore}
         <br />
