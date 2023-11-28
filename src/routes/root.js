@@ -3,11 +3,13 @@ import LogoIMG from "../img/logobrain.png";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 export default function Root() {
-  const { setIsPlusStart, setIsMinusStart } = useContext(AppContext);
+  const { setIsPlusStart, setIsMinusStart, setIsDivisionStart } =
+    useContext(AppContext);
 
   const resetFlag = () => {
     setIsPlusStart(false);
     setIsMinusStart(false);
+    setIsDivisionStart(false);
   };
 
   return (

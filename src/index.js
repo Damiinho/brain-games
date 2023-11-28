@@ -10,6 +10,7 @@ import ErrorPage from "./error-page";
 import Game from "./routes/game";
 import PlusGame from "./routes/Games/Plus/plus";
 import MinusGame from "./routes/Games/Minus/minus";
+import DivisionGame from "./routes/Games/Division/division";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "minus",
         element: <MinusGame />,
+      },
+      {
+        path: "division",
+        element: <DivisionGame />,
       },
     ],
   },

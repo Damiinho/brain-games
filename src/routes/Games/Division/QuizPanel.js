@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from "react";
-import { AdditionContext } from "../../../contexts/AdditionContext";
+import { DivisionContext } from "../../../contexts/DivisionContext";
 import Timer from "./Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -27,7 +27,7 @@ const QuizPanel = () => {
     setBestScore,
     currentQuestion,
     newQuestion,
-  } = useContext(AdditionContext);
+  } = useContext(DivisionContext);
 
   const bestResult = bestScore.find(
     (element) => element.level === level && element.time === time
@@ -124,7 +124,7 @@ const QuizPanel = () => {
       <Timer />
       <div className="plus__game-challenge">
         <Textfit mode="single">
-          {currentQuestion.firstNumber} + {currentQuestion.secondNumber} ={" "}
+          {currentQuestion.firstNumber} / {currentQuestion.secondNumber} ={" "}
           {currentQuestion.visibleResult}
         </Textfit>
       </div>
