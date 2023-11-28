@@ -12,6 +12,7 @@ const WrongAnswerPanel = () => {
     setCurrentScore,
     setIsWrong,
     bestScore,
+    newQuestion,
   } = useContext(AdditionContext);
   const { setIsPlusStart, windowWidth } = useContext(AppContext);
   const bestResult = bestScore.find(
@@ -28,6 +29,7 @@ const WrongAnswerPanel = () => {
             setCurrentScore(0);
             setIsWrong(false);
             setCurrentTime(time);
+            newQuestion();
           }}
           style={{
             fontFamily: "Changa, serif",

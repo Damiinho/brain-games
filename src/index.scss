@@ -203,6 +203,12 @@ main {
       &__options {
         font-size: 28px;
       }
+      &__start {
+        button {
+          width: 40%;
+          height: 80px;
+        }
+      }
       &__game {
         height: 90%;
         display: flex;
