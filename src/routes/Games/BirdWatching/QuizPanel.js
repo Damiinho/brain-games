@@ -59,7 +59,25 @@ const QuizPanel = () => {
       <Timer />
       <div
         className={`plus__game-challenge birdwatching ${
-          level === 1 ? "trainee" : ""
+          level === 1
+            ? "trainee"
+            : level === 2
+            ? "easy"
+            : level === 3
+            ? "medium"
+            : level === 4
+            ? "hard"
+            : level === 5
+            ? "extreme"
+            : currentScore < 6
+            ? "trainee"
+            : currentScore < 11
+            ? "easy"
+            : currentScore < 16
+            ? "medium"
+            : currentScore < 21
+            ? "hard"
+            : "extreme"
         }`}
       >
         {currentQuestion.blocks.map((block) => {

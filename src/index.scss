@@ -8,6 +8,8 @@
   padding: 0;
   box-sizing: border-box;
 }
+$material-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+  0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
 body {
   background-image: url("./img/background.jpeg");
@@ -181,8 +183,32 @@ main {
             > div {
               width: 150px;
               height: 150px;
+              border: 1px solid rgb(97, 97, 97);
               border-radius: 10px;
               cursor: pointer;
+              box-shadow: $material-box-shadow;
+            }
+          }
+          &.easy,
+          &.medium {
+            > div {
+              width: 120px;
+              height: 120px;
+              border: 1px solid rgb(97, 97, 97);
+              border-radius: 10px;
+              cursor: pointer;
+              box-shadow: $material-box-shadow;
+            }
+          }
+          &.hard,
+          &.extreme {
+            > div {
+              width: 80px;
+              height: 80px;
+              border: 1px solid rgb(97, 97, 97);
+              border-radius: 10px;
+              cursor: pointer;
+              box-shadow: $material-box-shadow;
             }
           }
         }
