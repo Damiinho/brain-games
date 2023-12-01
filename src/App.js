@@ -4,6 +4,7 @@ import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import IndeterminateCheckBoxRoundedIcon from "@mui/icons-material/IndeterminateCheckBoxRounded";
 import { Link } from "react-router-dom";
 import { LinearGradient } from "react-text-gradients";
+import BirdIMG from "./img/bird.svg";
 
 function App() {
   const buttonStyle = {
@@ -28,7 +29,7 @@ function App() {
           Math games
         </LinearGradient>
       </div>
-      <div className="games__math">
+      <div className="games__list">
         <Link to={`plus`}>
           <Button
             size="small"
@@ -150,6 +151,39 @@ function App() {
                     ×
                   </span>
                 </div>
+              </div>
+            </div>
+          </Button>
+        </Link>
+      </div>{" "}
+      <div className="games__division-title observation">
+        <LinearGradient gradient={["to left", "#ff68f0 ,#17acff"]}>
+          Observation games
+        </LinearGradient>
+      </div>
+      <div className="games__list">
+        <Link to={`birdwatching`}>
+          <Button
+            size="small"
+            variant="contained"
+            style={{
+              backgroundColor: "rgb(63, 130, 185, 0.7)",
+            }}
+          >
+            <div style={buttonStyle}>
+              <span style={spanStyle}>Bird Watching</span>
+              <div
+                style={{
+                  width: 26,
+                  height: 26,
+                  backgroundColor: "#fb00aa",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img style={{ width: 25 }} src={BirdIMG} alt="birdwatching" />
               </div>
             </div>
           </Button>

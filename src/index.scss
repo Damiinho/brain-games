@@ -85,8 +85,11 @@ main {
       width: 100%;
       text-align: left;
       letter-spacing: 3px;
+      &.observation {
+        letter-spacing: 1.5px;
+      }
     }
-    &__math {
+    &__list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -158,15 +161,31 @@ main {
         height: 25px;
         width: 65%;
         margin: 0 auto;
-        background: linear-gradient(
-          90deg,
-          rgba(55, 130, 187, 1) 0%,
-          rgba(212, 0, 145, 1) 100%
-        );
+        background: linear-gradient(90deg, #3782bb 0%, #d40091 100%);
       }
       &-challenge {
         text-align: center;
         font-size: 100px;
+
+        &.birdwatching {
+          margin: 20px auto;
+          width: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          flex-wrap: wrap;
+          gap: 5px;
+
+          &.trainee {
+            > div {
+              width: 150px;
+              height: 150px;
+              border-radius: 10px;
+              cursor: pointer;
+            }
+          }
+        }
       }
       &-buttons {
         display: flex;

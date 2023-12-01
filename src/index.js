@@ -11,6 +11,7 @@ import Game from "./routes/game";
 import PlusGame from "./routes/Games/Plus/plus";
 import MinusGame from "./routes/Games/Minus/minus";
 import DivisionGame from "./routes/Games/Division/division";
+import BirdWatchingGame from "./routes/Games/BirdWatching/birdwatching";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "division",
         element: <DivisionGame />,
+      },
+      {
+        path: "birdwatching",
+        element: <BirdWatchingGame />,
       },
     ],
   },
