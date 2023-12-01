@@ -76,8 +76,16 @@ main {
 
   .games {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    &__division-title {
+      font-family: Raleway, serif;
+      font-size: 24px;
+      width: 100%;
+      text-align: left;
+      letter-spacing: 3px;
+    }
     &__math {
       display: flex;
       flex-wrap: wrap;

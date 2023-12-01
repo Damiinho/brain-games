@@ -3,6 +3,8 @@ import "./App.css";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import IndeterminateCheckBoxRoundedIcon from "@mui/icons-material/IndeterminateCheckBoxRounded";
 import { Link } from "react-router-dom";
+import { LinearGradient } from "react-text-gradients";
+
 function App() {
   const buttonStyle = {
     color: "#ff00ab",
@@ -21,6 +23,11 @@ function App() {
 
   return (
     <div className="games">
+      <div className="games__division-title">
+        <LinearGradient gradient={["to left", "#ff68f0 ,#17acff"]}>
+          Math games
+        </LinearGradient>
+      </div>
       <div className="games__math">
         <Link to={`plus`}>
           <Button
