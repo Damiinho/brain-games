@@ -53,9 +53,11 @@ const StartPanel = () => {
   return (
     <>
       <div className="plus__description">
-        The game involves assessing whether the addition result is correct. You
-        can choose the answer using the mouse or the keyboard (or by touch, of
-        course).
+        <p>Check if the subtraction result is correct.</p>
+        <p style={{ marginTop: 10 }}>
+          You can choose the answer using the mouse, the keyboard (left arrow –
+          bad, right arrow – good) or by touch.
+        </p>
         <div className="plus__description-buttons">
           <Button variant="contained" color="error">
             <div style={buttonStyle}>

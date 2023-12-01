@@ -9,91 +9,296 @@ export const DivisionProvider = ({ children }) => {
   const [currentScore, setCurrentScore] = useState(0);
   const [isWrong, setIsWrong] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState({});
-  const numbers = {
-    trainee: [
-      { dividend: 1, divisor: [{ number: 1, result: [1, 0] }] },
-      {
-        dividend: 2,
-        divisor: [
-          { number: 1, result: [1, 2] },
-          { number: 2, result: [1, 2] },
-        ],
-      },
-      {
-        dividend: 3,
-        divisor: [
-          { number: 1, result: [1, 3] },
-          { number: 3, result: [1, 3] },
-        ],
-      },
-      {
-        dividend: 4,
-        divisor: [
-          { number: 2, result: [1, 2, 4] },
-          { number: 4, result: [1, 2, 4] },
-        ],
-      },
+  const trainee = [
+    { dividend: 1, divisor: [{ number: 1, result: [1, 0] }] },
+    {
+      dividend: 2,
+      divisor: [
+        { number: 1, result: [1, 2] },
+        { number: 2, result: [1, 2] },
+      ],
+    },
+    {
+      dividend: 4,
+      divisor: [
+        { number: 2, result: [1, 2, 4] },
+        { number: 4, result: [1, 2, 4] },
+      ],
+    },
 
-      {
-        dividend: 5,
-        divisor: [
-          { number: 1, result: [1, 3, 5] },
-          { number: 3, result: [2, 3] },
-          { number: 5, result: [1, 5] },
-        ],
-      },
-      {
-        dividend: 6,
-        divisor: [
-          { number: 2, result: [3, 2] },
-          { number: 3, result: [2, 3] },
-          { number: 6, result: [1, 3, 6] },
-        ],
-      },
-    ],
-    // easy: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    // medium: [
-    //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    // ],
-    // hard: [
-    //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    //   22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-    //   40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    // ],
-    // extreme: [
-    //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    //   22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-    //   40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
-    //   58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
-    //   76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
-    //   94, 95, 96, 97, 98, 99, 100,
-    // ],
-    // increasing:
-    //   isWrong === true
-    //     ? [1, 2, 3, 4, 5]
-    //     : currentScore < 10
-    //     ? [1, 2, 3, 4, 5]
-    //     : currentScore < 17
-    //     ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    //     : currentScore < 25
-    //     ? [
-    //         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    //         20,
-    //       ]
-    //     : currentScore < 50
-    //     ? [
-    //         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    //         20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
-    //         37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    //       ]
-    //     : [
-    //         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    //         20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
-    //         37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53,
-    //         54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-    //         71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87,
-    //         88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
-    //       ],
+    {
+      dividend: 5,
+      divisor: [
+        { number: 1, result: [1, 3, 5] },
+        { number: 3, result: [2, 3] },
+        { number: 5, result: [1, 5] },
+      ],
+    },
+
+    {
+      dividend: 10,
+      divisor: [
+        { number: 2, result: [2, 5] },
+        { number: 5, result: [2, 5] },
+        { number: 10, result: [1, 0, 10] },
+      ],
+    },
+  ];
+  const easy = [
+    {
+      dividend: 3,
+      divisor: [
+        { number: 1, result: [1, 3] },
+        { number: 3, result: [1, 3] },
+      ],
+    },
+    {
+      dividend: 6,
+      divisor: [
+        { number: 2, result: [3, 2] },
+        { number: 3, result: [2, 3] },
+        { number: 6, result: [1, 3, 6] },
+      ],
+    },
+
+    {
+      dividend: 8,
+      divisor: [
+        { number: 2, result: [4, 2] },
+        { number: 3, result: [3, 2] },
+        { number: 4, result: [4, 2] },
+      ],
+    },
+    {
+      dividend: 9,
+      divisor: [
+        { number: 1, result: [9, 1] },
+        { number: 2, result: [4, 5, 0] },
+        { number: 3, result: [3, 4] },
+        { number: 9, result: [1, 9] },
+      ],
+    },
+    {
+      dividend: 15,
+      divisor: [
+        { number: 3, result: [5, 3] },
+        { number: 5, result: [3, 5] },
+        { number: 7, result: [2] },
+      ],
+    },
+    {
+      dividend: 20,
+      divisor: [
+        { number: 2, result: [10, 5] },
+        { number: 4, result: [5, 4] },
+        { number: 5, result: [4, 5] },
+        { number: 10, result: [10, 2] },
+      ],
+    },
+    {
+      dividend: 25,
+      divisor: [{ number: 5, result: [5, 6] }],
+    },
+    {
+      dividend: 30,
+      divisor: [
+        { number: 3, result: [10, 3] },
+        { number: 10, result: [10, 3] },
+      ],
+    },
+  ];
+  const medium = [
+    {
+      dividend: 7,
+      divisor: [
+        { number: 1, result: [7] },
+        { number: 3, result: [2, 3] },
+        { number: 7, result: [1, 0] },
+      ],
+    },
+    {
+      dividend: 12,
+      divisor: [
+        { number: 2, result: [6, 4] },
+        { number: 3, result: [4, 6] },
+        { number: 4, result: [3, 4] },
+        { number: 6, result: [2, 6] },
+      ],
+    },
+
+    {
+      dividend: 16,
+      divisor: [
+        { number: 2, result: [8, 6] },
+        { number: 4, result: [4, 6] },
+        { number: 8, result: [2, 4] },
+      ],
+    },
+    {
+      dividend: 18,
+      divisor: [
+        { number: 2, result: [9, 2] },
+        { number: 4, result: [4, 5] },
+        { number: 6, result: [3, 4] },
+        { number: 9, result: [2, 9] },
+      ],
+    },
+    {
+      dividend: 21,
+      divisor: [{ number: 3, result: [9, 7, 6] }],
+    },
+    {
+      dividend: 27,
+      divisor: [
+        { number: 3, result: [9, 8] },
+        { number: 9, result: [3, 4] },
+        { number: 7, result: [4, 5] },
+      ],
+    },
+    {
+      dividend: 36,
+      divisor: [{ number: 6, result: [6, 8] }],
+    },
+    {
+      dividend: 64,
+      divisor: [{ number: 8, result: [8, 9] }],
+    },
+    {
+      dividend: 81,
+      divisor: [{ number: 9, result: [8, 9] }],
+    },
+  ];
+  const hard = [
+    {
+      dividend: 11,
+      divisor: [{ number: 3, result: [3, 4] }],
+    },
+    {
+      dividend: 13,
+      divisor: [
+        { number: 3, result: [3, 4] },
+        { number: 13, result: [1, 0] },
+      ],
+    },
+    {
+      dividend: 14,
+      divisor: [
+        { number: 2, result: [6, 7] },
+        { number: 4, result: [3, 4] },
+        { number: 6, result: [3, 4] },
+        { number: 7, result: [2, 3] },
+      ],
+    },
+    {
+      dividend: 17,
+      divisor: [
+        { number: 17, result: [1] },
+        { number: 3, result: [5, 6] },
+      ],
+    },
+    {
+      dividend: 19,
+      divisor: [{ number: 9, result: [2, 3] }],
+    },
+
+    {
+      dividend: 28,
+      divisor: [
+        { number: 3, result: [9, 8] },
+        { number: 7, result: [4, 5] },
+        { number: 2, result: [14, 2] },
+      ],
+    },
+    {
+      dividend: 42,
+      divisor: [
+        { number: 7, result: [6, 8] },
+        { number: 6, result: [7, 8] },
+      ],
+    },
+    {
+      dividend: 56,
+      divisor: [
+        { number: 7, result: [6, 8] },
+        { number: 8, result: [7, 6] },
+      ],
+    },
+    {
+      dividend: 63,
+      divisor: [
+        { number: 7, result: [9, 8] },
+        { number: 9, result: [7, 8] },
+      ],
+    },
+    {
+      dividend: 72,
+      divisor: [
+        { number: 9, result: [7, 8] },
+        { number: 8, result: [7, 9] },
+      ],
+    },
+    {
+      dividend: 81,
+      divisor: [{ number: 3, result: [27, 28] }],
+    },
+  ];
+  const extreme = [
+    {
+      dividend: 3,
+      divisor: [{ number: 5, result: [3 / 5, 3 / 4] }],
+    },
+    {
+      dividend: 7,
+      divisor: [{ number: 2, result: [7 / 2, 7 / 4] }],
+    },
+    {
+      dividend: 9,
+      divisor: [{ number: 2, result: [9 / 2, 4.6] }],
+    },
+    {
+      dividend: 2,
+      divisor: [
+        { number: 6, result: [2 / 6, 4 / 6] },
+        { number: 5, result: [2 / 5, 2 / 6] },
+        { number: 8, result: [1 / 4, 1 / 5] },
+      ],
+    },
+    {
+      dividend: 3,
+      divisor: [
+        { number: 6, result: [3 / 6, 2 / 6] },
+        { number: 2, result: [3 / 2, 4 / 3] },
+        { number: 10, result: [3 / 10, 3 / 9] },
+      ],
+    },
+    {
+      dividend: 1,
+      divisor: [
+        { number: 5, result: [1 / 4, 1 / 5] },
+        { number: 4, result: [1 / 4, 1 / 5] },
+        { number: 10, result: [1 / 10, 1 / 11] },
+        { number: 3, result: [1 / 3, 2 / 3] },
+      ],
+    },
+  ];
+  const numbers = {
+    trainee: [...trainee],
+    easy: [...trainee, ...easy],
+    medium: [...trainee, ...easy, ...medium],
+    hard: [...trainee, ...easy, ...medium, ...hard],
+    extreme: [...trainee, ...easy, ...medium, ...hard, ...extreme],
+    increasing:
+      isWrong === true
+        ? [...trainee]
+        : currentScore < 4
+        ? [...trainee]
+        : currentScore < 13
+        ? [...trainee, ...easy]
+        : currentScore < 25
+        ? [...trainee, ...easy, ...medium]
+        : currentScore < 50
+        ? [...trainee, ...easy, ...medium, ...hard]
+        : [...trainee, ...easy, ...medium, ...hard, ...extreme],
   };
   const [bestScore, setBestScore] = useState([
     { level: 1, time: 1, best: 0 },

@@ -124,8 +124,9 @@ const QuizPanel = () => {
       <Timer />
       <div className="plus__game-challenge">
         <Textfit mode="single">
-          {currentQuestion.firstNumber} / {currentQuestion.secondNumber} ={" "}
-          {currentQuestion.visibleResult}
+          {parseFloat(currentQuestion.firstNumber.toFixed(2))} /{" "}
+          {parseFloat(currentQuestion.secondNumber.toFixed(2))} ={" "}
+          {parseFloat(currentQuestion.visibleResult.toFixed(2))}
         </Textfit>
       </div>
       <div className="plus__game-buttons">
