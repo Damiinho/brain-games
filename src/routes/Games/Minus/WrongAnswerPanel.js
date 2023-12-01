@@ -18,9 +18,9 @@ const WrongAnswerPanel = () => {
     (element) => element.level === level && element.time === time
   );
   return (
-    <div className="plus__game">
+    <div className="game__game">
       {" "}
-      <div className="plus__game-buttons">
+      <div className="game__game-buttons">
         <Button
           variant="contained"
           color="warning"
@@ -46,8 +46,8 @@ const WrongAnswerPanel = () => {
           {windowWidth > 320 ? "back" : "back"}
         </Button>
       </div>
-      <div className="plus__game-challenge">Wrong answer</div>{" "}
-      <div className="plus__game-score">
+      <div className="game__game-challenge">Wrong answer</div>{" "}
+      <div className="game__game-score">
         Last score: {currentScore}
         <br />
         Best score: {bestResult.best}

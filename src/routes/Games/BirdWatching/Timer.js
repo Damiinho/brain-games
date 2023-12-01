@@ -16,9 +16,9 @@ const Timer = () => {
   }, [currentTime, setCurrentTime, setIsWrong]);
 
   return (
-    <div className="plus__game-time">
+    <div className="game__game-time">
       <div
-        className="plus__game-time__contain"
+        className="game__game-time__contain"
         style={{
           position: "absolute",
           width: `${100 - (currentTime / time) * 100}%`,

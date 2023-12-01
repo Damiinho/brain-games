@@ -52,13 +52,13 @@ const StartPanel = () => {
 
   return (
     <>
-      <div className="plus__description">
+      <div className="game__description">
         <p>Check if the subtraction result is correct.</p>
         <p style={{ marginTop: 10 }}>
           You can choose the answer using the mouse, the keyboard (left arrow –
           bad, right arrow – good) or by touch.
         </p>
-        <div className="plus__description-buttons">
+        <div className="game__description-buttons">
           <Button variant="contained" color="error">
             <div style={buttonStyle}>
               {windowWidth > 400 && (
@@ -88,10 +88,10 @@ const StartPanel = () => {
           </Button>
         </div>
       </div>
-      <div className="plus__options">
-        <div className="plus__options-title">Change options:</div>
-        <div className="plus__options-main">
-          <div className="plus__options-main__element">
+      <div className="game__options">
+        <div className="game__options-title">Change options:</div>
+        <div className="game__options-main">
+          <div className="game__options-main__element">
             <p>Time:</p>
 
             <Select
@@ -142,7 +142,7 @@ const StartPanel = () => {
               </MenuItem>
             </Select>
           </div>
-          <div className="plus__options-main__element">
+          <div className="game__options-main__element">
             <p>Level:</p>
 
             <Select
@@ -195,8 +195,8 @@ const StartPanel = () => {
           </div>
         </div>
       </div>{" "}
-      <div className="plus__options-best">Best result: {bestResult.best}</div>
-      <div className="plus__start">
+      <div className="game__options-best">Best result: {bestResult.best}</div>
+      <div className="game__start">
         <Button
           variant="contained"
           size={windowWidth > 400 ? "large" : "medium"}

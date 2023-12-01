@@ -98,7 +98,7 @@ main {
     }
   }
 
-  .plus {
+  .game {
     margin: 0 20px;
     &__description {
       font-size: 28px;
@@ -181,8 +181,8 @@ main {
 
           &.trainee {
             > div {
-              width: 150px;
-              height: 150px;
+              width: 30%;
+              aspect-ratio: 1 / 1;
               border: 1px solid rgb(97, 97, 97);
               border-radius: 10px;
               cursor: pointer;
@@ -192,8 +192,8 @@ main {
           &.easy,
           &.medium {
             > div {
-              width: 120px;
-              height: 120px;
+              width: 23%;
+              aspect-ratio: 1 / 1;
               border: 1px solid rgb(97, 97, 97);
               border-radius: 10px;
               cursor: pointer;
@@ -203,8 +203,8 @@ main {
           &.hard,
           &.extreme {
             > div {
-              width: 80px;
-              height: 80px;
+              width: 18%;
+              aspect-ratio: 1 / 1;
               border: 1px solid rgb(97, 97, 97);
               border-radius: 10px;
               cursor: pointer;

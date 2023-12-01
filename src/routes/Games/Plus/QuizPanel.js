@@ -119,16 +119,16 @@ const QuizPanel = () => {
   }, [handleKeyDown]);
 
   return (
-    <div className="plus__game">
-      <div className="plus__game-score">Current score: {currentScore}</div>
+    <div className="game__game">
+      <div className="game__game-score">Current score: {currentScore}</div>
       <Timer />
-      <div className="plus__game-challenge">
+      <div className="game__game-challenge">
         <Textfit mode="single">
           {currentQuestion.firstNumber} + {currentQuestion.secondNumber} ={" "}
           {currentQuestion.visibleResult}
         </Textfit>
       </div>
-      <div className="plus__game-buttons">
+      <div className="game__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>
           <div style={buttonStyle}>
             <div className="button-text">incorrect</div>

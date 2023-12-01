@@ -54,11 +54,11 @@ const QuizPanel = () => {
   );
 
   return (
-    <div className="plus__game">
-      <div className="plus__game-score">Current score: {currentScore}</div>
+    <div className="game__game">
+      <div className="game__game-score">Current score: {currentScore}</div>
       <Timer />
       <div
-        className={`plus__game-challenge birdwatching ${
+        className={`game__game-challenge birdwatching ${
           level === 1
             ? "trainee"
             : level === 2

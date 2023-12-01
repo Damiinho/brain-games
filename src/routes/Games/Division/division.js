@@ -9,7 +9,7 @@ const DivisionGame = () => {
 
   return (
     <DivisionProvider>
-      <div className="plus">
+      <div className="game">
         {!isDivisionStart && <StartPanel />}
         {isDivisionStart && <GameContent />}
       </div>
