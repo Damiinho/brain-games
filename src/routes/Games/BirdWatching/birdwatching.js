@@ -9,7 +9,7 @@ const BirdWatchingGame = () => {
 
   return (
     <BirdWatchingProvider>
-      <div className="plus">
+      <div className="game">
         {!isBirdWatchingStart && <StartPanel />}
         {isBirdWatchingStart && <GameContent />}
       </div>

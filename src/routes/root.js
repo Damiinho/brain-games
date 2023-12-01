@@ -7,6 +7,7 @@ export default function Root() {
     setIsPlusStart,
     setIsMinusStart,
     setIsDivisionStart,
+    setIsHighOrLowStart,
     setIsBirdWatchingStart,
   } = useContext(AppContext);
 
@@ -14,6 +15,7 @@ export default function Root() {
     setIsPlusStart(false);
     setIsMinusStart(false);
     setIsDivisionStart(false);
+    setIsHighOrLowStart(false);
     setIsBirdWatchingStart(false);
   };
 

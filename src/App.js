@@ -5,6 +5,7 @@ import IndeterminateCheckBoxRoundedIcon from "@mui/icons-material/IndeterminateC
 import { Link } from "react-router-dom";
 import { LinearGradient } from "react-text-gradients";
 import BirdIMG from "./img/bird.svg";
+import HighOrLowIMG from "./img/highorlow.svg";
 
 function App() {
   const buttonStyle = {
@@ -184,6 +185,32 @@ function App() {
                 }}
               >
                 <img style={{ width: 25 }} src={BirdIMG} alt="birdwatching" />
+              </div>
+            </div>
+          </Button>
+        </Link>
+        <Link to={`highorlow`}>
+          <Button
+            size="small"
+            variant="contained"
+            style={{
+              backgroundColor: "rgb(63, 130, 185, 0.7)",
+            }}
+          >
+            <div style={buttonStyle}>
+              <span style={spanStyle}>High or low</span>
+              <div
+                style={{
+                  width: 26,
+                  height: 26,
+                  backgroundColor: "#fb00aa",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img style={{ width: 25 }} src={HighOrLowIMG} alt="highorlow" />
               </div>
             </div>
           </Button>

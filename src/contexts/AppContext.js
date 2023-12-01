@@ -9,6 +9,7 @@ export const AppProvider = ({ children }) => {
   const [isMinusStart, setIsMinusStart] = useState(false);
   const [isDivisionStart, setIsDivisionStart] = useState(false);
   const [isBirdWatchingStart, setIsBirdWatchingStart] = useState(false);
+  const [isHighOrLowStart, setIsHighOrLowStart] = useState(false);
 
   const providerValue = {
     windowWidth,
@@ -21,6 +22,8 @@ export const AppProvider = ({ children }) => {
     setIsDivisionStart,
     isBirdWatchingStart,
     setIsBirdWatchingStart,
+    isHighOrLowStart,
+    setIsHighOrLowStart,
   };
 
   useEffect(() => {
