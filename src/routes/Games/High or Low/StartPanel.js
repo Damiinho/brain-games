@@ -209,7 +209,7 @@ const StartPanel = () => {
             setIsHighOrLowStart(true);
             setIsWrong(false);
             newQuestion();
-            setCurrentScore(0);
+            setCurrentScore(-1);
           }}
         >
           Start

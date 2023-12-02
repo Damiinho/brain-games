@@ -28,7 +28,7 @@ const WrongAnswerPanel = () => {
           color="warning"
           size="large"
           onClick={() => {
-            setCurrentScore(0);
+            setCurrentScore(-1);
             setIsWrong(false);
             setCurrentTime(time);
             newQuestion();
