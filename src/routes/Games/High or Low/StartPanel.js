@@ -3,9 +3,10 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
+import { isMobile } from "react-device-detect";
 
 const StartPanel = () => {
   const {
@@ -20,6 +21,36 @@ const StartPanel = () => {
     setCurrentScore,
   } = useContext(HighOrLowContext);
   const { setIsHighOrLowStart } = useContext(AppContext);
+  console.log(isMobile);
+
+  const toggleFullscreen = useCallback(() => {
+    const element = document.documentElement;
+    if (isMobile) {
+      if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement
+      ) {
+        // Wyjdź z trybu pełnoekranowego, jeśli jesteśmy już w nim
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        }
+      } else {
+        // Wejdź w tryb pełnoekranowy
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        }
+      }
+    }
+  }, []);
 
   const buttonStyle = {
     display: "flex",
@@ -210,6 +241,7 @@ const StartPanel = () => {
             setIsWrong(false);
             newQuestion();
             setCurrentScore(-1);
+            toggleFullscreen();
           }}
         >
           Start
