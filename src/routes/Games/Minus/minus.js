@@ -9,7 +9,7 @@ const MinusGame = () => {
 
   return (
     <SubtractionProvider>
-      <div className="plus">
+      <div className="game">
         {!isMinusStart && <StartPanel />}
         {isMinusStart && <GameContent />}
       </div>

@@ -9,7 +9,7 @@ const HighOrLowGame = () => {
 
   return (
     <HighOrLowProvider>
-      <div className="plus">
+      <div className="game">
         {!isHighOrLowStart && <StartPanel />}
         {isHighOrLowStart && <GameContent />}
       </div>

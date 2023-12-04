@@ -50,14 +50,80 @@ export const HighOrLowProvider = ({ children }) => {
     const oldNumber = currentQuestion.number;
     let newNumber;
 
-    do {
-      newNumber = Math.floor(Math.random() * 20);
-    } while (Math.abs(newNumber - oldNumber) <= 5);
+    if (
+      level === 1 ||
+      (level === 6 && isWrong === true) ||
+      (level === 6 && currentScore < 4)
+    ) {
+      do {
+        newNumber = Math.floor(Math.random() * 20);
+      } while (Math.abs(newNumber - oldNumber) <= 5);
 
-    setCurrentQuestion({
-      oldNumber,
-      number: newNumber,
-    });
+      setCurrentQuestion({
+        oldNumber,
+        number: newNumber,
+      });
+    } else if (level === 2 || (level === 6 && currentScore < 13)) {
+      do {
+        newNumber = Math.floor(Math.random() * 20);
+      } while (newNumber === oldNumber);
+
+      setCurrentQuestion({
+        oldNumber,
+        number: newNumber,
+      });
+    } else if (level === 3 || (level === 6 && currentScore < 25)) {
+      do {
+        newNumber = Math.floor(Math.random() * 50);
+      } while (newNumber === oldNumber);
+
+      setCurrentQuestion({
+        oldNumber,
+        number: newNumber,
+      });
+    } else if (level === 4 || (level === 6 && currentScore < 50)) {
+      const competringNumber =
+        currentScore < 0 ? oldNumber : Math.floor(Math.random() * 50);
+
+      do {
+        newNumber = Math.floor(Math.random() * 50);
+      } while (
+        newNumber === competringNumber ||
+        !(Math.abs(newNumber - competringNumber) <= 5)
+      );
+
+      let newRandomNumber = 0;
+      do {
+        newRandomNumber = Math.floor(Math.random() * 50);
+      } while (newRandomNumber === competringNumber);
+      const randomize = Math.floor(Math.random() * 2);
+
+      setCurrentQuestion({
+        oldNumber,
+        number: randomize === 0 ? newNumber : newRandomNumber,
+      });
+    } else if (level === 5 || level === 6) {
+      const competringNumber =
+        currentScore < 0 ? oldNumber : Math.floor(Math.random() * 100);
+
+      do {
+        newNumber = Math.floor(Math.random() * 100);
+      } while (
+        newNumber === competringNumber ||
+        !(Math.abs(newNumber - competringNumber) <= 5)
+      );
+
+      let newRandomNumber = 0;
+      do {
+        newRandomNumber = Math.floor(Math.random() * 100);
+      } while (newRandomNumber === competringNumber);
+      const randomize = Math.floor(Math.random() * 2);
+
+      setCurrentQuestion({
+        oldNumber,
+        number: randomize === 0 ? newNumber : newRandomNumber,
+      });
+    }
 
     setCurrentTime(time);
   };

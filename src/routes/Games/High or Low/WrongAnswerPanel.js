@@ -25,7 +25,7 @@ const WrongAnswerPanel = () => {
       <div className="game__game-buttons">
         <Button
           variant="contained"
-          color="warning"
+          color="secondary"
           size="large"
           onClick={() => {
             setCurrentScore(-1);
@@ -41,7 +41,7 @@ const WrongAnswerPanel = () => {
         </Button>
         <Button
           variant="contained"
-          color="info"
+          color="primary"
           size="large"
           onClick={() => setIsHighOrLowStart(false)}
           style={{

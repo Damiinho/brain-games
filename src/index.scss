@@ -164,10 +164,62 @@ main {
         width: 65%;
         margin: 0 auto;
         background: linear-gradient(90deg, #3782bb 0%, #d40091 100%);
+        transition: 1s;
       }
       &-challenge {
         text-align: center;
         font-size: 100px;
+
+        &.highorlow {
+          position: relative;
+          height: 234px;
+          overflow: hidden;
+          .currentNumber {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            left: -150vw;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(200, 200, 200, 0.212);
+            border: 1px solid rgb(27, 27, 27);
+            border-radius: 10px;
+            box-shadow: $material-box-shadow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.show {
+              transition: 0.5s;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+
+          .oldNumber {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background-color: rgba(200, 200, 200, 0.212);
+            border: 1px solid rgb(27, 27, 27);
+            border-radius: 10px;
+            box-shadow: $material-box-shadow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.down {
+              transition: 1s;
+              top: 150vw;
+            }
+            &.up {
+              transition: 1s;
+              top: -150vw;
+            }
+          }
+        }
 
         &.birdwatching {
           margin: 20px auto;

@@ -1,10 +1,12 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
 import Timer from "./Timer";
 import { Textfit } from "react-textfit";
 import { Button } from "@mui/material";
 import ArrowCircleDownRoundedIcon from "@mui/icons-material/ArrowCircleDownRounded";
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
+import { useSwipeable } from "react-swipeable";
+
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",
@@ -17,6 +19,7 @@ const QuizPanel = () => {
   const {
     level,
     time,
+    currentTime,
     setCurrentTime,
     currentScore,
     setCurrentScore,
@@ -27,35 +30,33 @@ const QuizPanel = () => {
     currentQuestion,
     newQuestion,
   } = useContext(HighOrLowContext);
+  const [upOrDown, setUpOrDown] = useState("down");
 
-  // setTimeout(() => {
-  //   if (currentScore === -1) {
-  //     newQuestion();
-  //     setCurrentScore(currentScore + 1);
-  //   }
-  // }, 500);
   const bestResult = bestScore.find(
     (element) => element.level === level && element.time === time
   );
 
   const handleLow = useCallback(() => {
-    if (!isWrong) {
-      if (currentScore > bestResult.best) {
-        setBestScore((prevScore) =>
-          prevScore.map((el) =>
-            el.level === level && el.time === time
-              ? { ...el, best: currentScore }
-              : el
-          )
-        );
+    if (!(currentScore < 0)) {
+      if (!isWrong) {
+        if (currentScore > bestResult.best) {
+          setBestScore((prevScore) =>
+            prevScore.map((el) =>
+              el.level === level && el.time === time
+                ? { ...el, best: currentScore }
+                : el
+            )
+          );
+        }
+        if (currentQuestion.number < currentQuestion.oldNumber) {
+          setCurrentScore(currentScore + 1);
+        } else {
+          setIsWrong(true);
+        }
+        setUpOrDown("down");
+        newQuestion();
+        setCurrentTime(time);
       }
-      if (currentQuestion.number < currentQuestion.oldNumber) {
-        setCurrentScore(currentScore + 1);
-      } else {
-        setIsWrong(true);
-      }
-      newQuestion();
-      setCurrentTime(time);
     }
   }, [
     bestResult,
@@ -70,25 +71,39 @@ const QuizPanel = () => {
     setCurrentTime,
     newQuestion,
   ]);
+  useEffect(() => {
+    if (currentScore < 0) {
+      setCurrentTime(0.7);
+    }
+  }, [currentScore, setCurrentTime]);
+  useEffect(() => {
+    if (currentScore < 0 && currentTime < 0.1) {
+      setCurrentScore(0);
+      newQuestion();
+    }
+  }, [newQuestion, currentScore, currentTime, setCurrentScore]);
 
   const handleHigh = useCallback(() => {
-    if (!isWrong) {
-      if (currentScore > bestResult.best) {
-        setBestScore((prevScore) =>
-          prevScore.map((el) =>
-            el.level === level && el.time === time
-              ? { ...el, best: currentScore }
-              : el
-          )
-        );
+    if (!(currentScore < 0)) {
+      if (!isWrong) {
+        if (currentScore > bestResult.best) {
+          setBestScore((prevScore) =>
+            prevScore.map((el) =>
+              el.level === level && el.time === time
+                ? { ...el, best: currentScore }
+                : el
+            )
+          );
+        }
+        if (currentQuestion.number > currentQuestion.oldNumber) {
+          setCurrentScore(currentScore + 1);
+        } else {
+          setIsWrong(true);
+        }
+        setUpOrDown("up");
+        newQuestion();
+        setCurrentTime(time);
       }
-      if (currentQuestion.number > currentQuestion.oldNumber) {
-        setCurrentScore(currentScore + 1);
-      } else {
-        setIsWrong(true);
-      }
-      newQuestion();
-      setCurrentTime(time);
     }
   }, [
     bestResult,
@@ -106,10 +121,10 @@ const QuizPanel = () => {
 
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "ArrowUp") {
         handleHigh();
       }
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
         handleLow();
       }
     },
@@ -124,21 +139,64 @@ const QuizPanel = () => {
     };
   }, [handleKeyDown, currentScore, newQuestion, setCurrentScore]);
 
+  const handlers = useSwipeable({
+    onSwipedUp: () => handleHigh(),
+    onSwipedDown: () => handleLow(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
   return (
-    <div className="game__game">
-      <div className="game__game-score">Current score: {currentScore}</div>
-      <Timer />
-      <div className="game__game-challenge">
-        <Textfit mode="single">{currentQuestion.number}</Textfit>
+    <div className="game__game" {...handlers}>
+      <div className="game__game-score">
+        Current score: {currentScore < 0 ? "0" : currentScore}
       </div>
+      <Timer />
+      <div className={`game__game-challenge highorlow`}>
+        <div
+          className={`currentNumber ${
+            currentTime > time - 0.01
+              ? currentScore < 0
+                ? "show"
+                : ""
+              : "show"
+          }`}
+        >
+          <Textfit mode="single">{currentQuestion.number}</Textfit>
+        </div>
+        <div
+          className={`oldNumber ${
+            currentTime > time - 0.01
+              ? currentScore < 0
+                ? "down"
+                : ""
+              : upOrDown === "down"
+              ? "down"
+              : "up"
+          }`}
+        >
+          <Textfit mode="single">{currentQuestion.oldNumber}</Textfit>
+        </div>
+      </div>
+
       <div className="game__game-buttons">
-        <Button variant="contained" color="error" onClick={handleLow}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLow}
+          disabled={currentScore < 0 ? true : false}
+        >
           <div style={buttonStyle}>
             <div className="button-text">low</div>
             <ArrowCircleDownRoundedIcon fontSize="large" />
           </div>
         </Button>
-        <Button variant="contained" color="success" onClick={handleHigh}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleHigh}
+          disabled={currentScore < 0 ? true : false}
+        >
           <div style={buttonStyle}>
             <div className="button-text">high</div>
             <ArrowCircleUpRoundedIcon fontSize="large" />

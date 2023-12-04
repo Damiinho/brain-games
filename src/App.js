@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { LinearGradient } from "react-text-gradients";
 import BirdIMG from "./img/bird.svg";
 import HighOrLowIMG from "./img/highorlow.svg";
-
 function App() {
   const buttonStyle = {
     color: "#ff00ab",
