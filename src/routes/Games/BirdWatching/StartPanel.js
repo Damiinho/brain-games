@@ -1,8 +1,5 @@
 import { Button, MenuItem, Select } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
+
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { BirdWatchingContext } from "../../../contexts/BirdWatchingContext";
@@ -20,15 +17,6 @@ const StartPanel = () => {
     setCurrentScore,
   } = useContext(BirdWatchingContext);
   const { setIsBirdWatchingStart } = useContext(AppContext);
-
-  const buttonStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 10,
-    fontSize: 20,
-    fontFamily: "Changa, serif",
-  };
 
   const itemStyle = {
     color: "white",
