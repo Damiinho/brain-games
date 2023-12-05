@@ -12,6 +12,19 @@ export const AppProvider = ({ children }) => {
   const [isHighOrLowStart, setIsHighOrLowStart] = useState(false);
   const [isSwipeMasterStart, setIsSwipeMasterStart] = useState(false);
 
+  const playSuccessSound = () => {
+    const audio = new Audio("/sounds/success.wav");
+    audio.play();
+  };
+  const playFailSound = () => {
+    const audio = new Audio("/sounds/fail.mp3");
+    audio.play();
+  };
+  const playEndSound = () => {
+    const audio = new Audio("/sounds/end.mp3");
+    audio.play();
+  };
+
   const providerValue = {
     windowWidth,
 
@@ -27,6 +40,9 @@ export const AppProvider = ({ children }) => {
     setIsHighOrLowStart,
     isSwipeMasterStart,
     setIsSwipeMasterStart,
+    playSuccessSound,
+    playFailSound,
+    playEndSound,
   };
 
   useEffect(() => {

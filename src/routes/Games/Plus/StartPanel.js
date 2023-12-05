@@ -18,6 +18,8 @@ const StartPanel = () => {
     setIsWrong,
     newQuestion,
     setCurrentScore,
+    setIsQuiqTest,
+    setCurrentTime,
   } = useContext(AdditionContext);
   const { setIsPlusStart } = useContext(AppContext);
 
@@ -85,6 +87,28 @@ const StartPanel = () => {
             </div>
           </Button>
         </div>
+      </div>
+      <div className="game__start">
+        <Button
+          variant="outlined"
+          size={windowWidth > 400 ? "large" : "medium"}
+          style={{
+            fontFamily: "Changa, serif",
+            fontSize: windowWidth > 400 ? 25 : 20,
+            marginRight: 10,
+          }}
+          onClick={() => {
+            setIsPlusStart(true);
+            setIsWrong(false);
+            newQuestion();
+            setCurrentScore(0);
+            setCurrentTime(20);
+            setIsQuiqTest(true);
+          }}
+        >
+          Quiq test
+        </Button>{" "}
+        (most in 20 seconds)
       </div>
       <div className="game__options">
         <div className="game__options-title">Change options:</div>
@@ -210,6 +234,7 @@ const StartPanel = () => {
             setIsWrong(false);
             newQuestion();
             setCurrentScore(0);
+            setIsQuiqTest(false);
           }}
         >
           Start

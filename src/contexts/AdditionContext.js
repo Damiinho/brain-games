@@ -9,6 +9,7 @@ export const AdditionProvider = ({ children }) => {
   const [currentScore, setCurrentScore] = useState(0);
   const [isWrong, setIsWrong] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState({});
+  const [isQuiqTest, setIsQuiqTest] = useState(false);
   const numbers = {
     trainee: [1, 2, 3, 4, 5],
     easy: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -256,7 +257,9 @@ export const AdditionProvider = ({ children }) => {
           )
         ],
     });
-    setCurrentTime(time);
+    if (!isQuiqTest) {
+      setCurrentTime(time);
+    }
   };
 
   const providerValue = {
@@ -276,6 +279,8 @@ export const AdditionProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
+    isQuiqTest,
+    setIsQuiqTest,
   };
 
   return (

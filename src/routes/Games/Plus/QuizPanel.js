@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Textfit } from "react-textfit";
+import { AppContext } from "../../../contexts/AppContext";
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",
@@ -27,7 +28,9 @@ const QuizPanel = () => {
     setBestScore,
     currentQuestion,
     newQuestion,
+    isQuiqTest,
   } = useContext(AdditionContext);
+  const { playSuccessSound, playFailSound } = useContext(AppContext);
 
   const bestResult = bestScore.find(
     (element) => element.level === level && element.time === time
@@ -45,14 +48,22 @@ const QuizPanel = () => {
       }
       if (!(currentQuestion.result === currentQuestion.visibleResult)) {
         setCurrentScore(currentScore + 1);
+        playSuccessSound();
       } else {
-        setIsWrong(true);
+        playFailSound();
+        if (!isQuiqTest) {
+          setIsWrong(true);
+        }
       }
       newQuestion();
-      setCurrentTime(time);
+      if (!isQuiqTest) {
+        setCurrentTime(time);
+      }
     }
   }, [
     bestResult,
+    playSuccessSound,
+    playFailSound,
     currentScore,
     isWrong,
     level,
@@ -63,6 +74,7 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    isQuiqTest,
   ]);
 
   const handleCorrect = useCallback(() => {
@@ -78,14 +90,22 @@ const QuizPanel = () => {
       }
       if (currentQuestion.result === currentQuestion.visibleResult) {
         setCurrentScore(currentScore + 1);
+        playSuccessSound();
       } else {
-        setIsWrong(true);
+        playFailSound();
+        if (!isQuiqTest) {
+          setIsWrong(true);
+        }
       }
       newQuestion();
-      setCurrentTime(time);
+      if (!isQuiqTest) {
+        setCurrentTime(time);
+      }
     }
   }, [
     bestResult,
+    playSuccessSound,
+    playFailSound,
     currentScore,
     isWrong,
     level,
@@ -96,6 +116,7 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    isQuiqTest,
   ]);
 
   const handleKeyDown = useCallback(
