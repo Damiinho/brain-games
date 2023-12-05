@@ -1,9 +1,14 @@
 import { Button, MenuItem, Select } from "@mui/material";
-
 import { useCallback, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
+import { SwipeMasterContext } from "../../../contexts/SwipeMasterContext";
 import { isMobile } from "react-device-detect";
+import {
+  EastRounded,
+  NorthRounded,
+  SouthRounded,
+  WestRounded,
+} from "@mui/icons-material";
 
 const StartPanel = () => {
   const {
@@ -16,8 +21,9 @@ const StartPanel = () => {
     setIsWrong,
     newQuestion,
     setCurrentScore,
-  } = useContext(HighOrLowContext);
-  const { setIsHighOrLowStart } = useContext(AppContext);
+  } = useContext(SwipeMasterContext);
+  const { setIsSwipeMasterStart } = useContext(AppContext);
+  console.log(isMobile);
 
   const toggleFullscreen = useCallback(() => {
     const element = document.documentElement;
@@ -66,15 +72,52 @@ const StartPanel = () => {
     (element) => element.level === level && element.time === time
   );
 
+  const arrows = [
+    <WestRounded style={{ fontSize: 100 }} />,
+    <EastRounded style={{ fontSize: 100 }} />,
+    <NorthRounded style={{ fontSize: 100 }} />,
+    <SouthRounded style={{ fontSize: 100 }} />,
+  ];
+
   return (
     <>
       <div className="game__description">
-        <p>Judge whether the number is larger or smaller.</p>
+        <p>Swipe in the appropriate direction (the direction of the arrow).</p>
         <p style={{ marginTop: 10 }}>
-          You can choose the answer using the mouse, the keyboard (left or down
-          arrow – smaller, right or up arrow – larger) or by touch (by swipe up
-          or down).
+          Be careful! If the background color of the arrow is red, swipe in the
+          opposite direction.
         </p>
+        <p style={{ marginTop: 10 }}>
+          You can control by touch (and swiping) or keyboard (arrows).
+        </p>
+        <div className="game__description-buttons">
+          <div
+            style={{
+              width: 120,
+              height: 120,
+              backgroundColor: "#3782bb99",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 20,
+            }}
+          >
+            {arrows[Math.floor(Math.random() * 4)]}
+          </div>
+          <div
+            style={{
+              width: 120,
+              height: 120,
+              backgroundColor: "#fb00aa99",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 20,
+            }}
+          >
+            {arrows[Math.floor(Math.random() * 4)]}
+          </div>
+        </div>
       </div>
       <div className="game__options">
         <div className="game__options-title">Change options:</div>
@@ -196,10 +239,10 @@ const StartPanel = () => {
             fontSize: windowWidth > 400 ? 25 : 20,
           }}
           onClick={() => {
-            setIsHighOrLowStart(true);
+            setIsSwipeMasterStart(true);
             setIsWrong(false);
             newQuestion();
-            setCurrentScore(-1);
+            setCurrentScore(0);
             toggleFullscreen();
           }}
         >

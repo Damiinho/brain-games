@@ -9,6 +9,7 @@ export default function Root() {
     setIsDivisionStart,
     setIsHighOrLowStart,
     setIsBirdWatchingStart,
+    setIsSwipeMasterStart,
   } = useContext(AppContext);
 
   const resetFlag = () => {
@@ -17,6 +18,7 @@ export default function Root() {
     setIsDivisionStart(false);
     setIsHighOrLowStart(false);
     setIsBirdWatchingStart(false);
+    setIsSwipeMasterStart(false);
   };
 
   return (

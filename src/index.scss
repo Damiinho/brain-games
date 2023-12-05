@@ -220,6 +220,75 @@ main {
             }
           }
         }
+        &.swipemaster {
+          position: relative;
+          height: 350px;
+          overflow: hidden;
+          .current {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            font-size: 150px;
+
+            box-shadow: $material-box-shadow;
+            &.show {
+              opacity: 1;
+              width: 250px;
+              height: 250px;
+              transition: 0.3s;
+            }
+            &.blue {
+              background-color: #3782bb99;
+            }
+            &.red {
+              background-color: #fb00aa99;
+            }
+          }
+          .old {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+            box-shadow: $material-box-shadow;
+            &.blue {
+              background-color: #3782bb99;
+            }
+            &.red {
+              background-color: #fb00aa99;
+            }
+            &.down {
+              top: 100vh;
+              transition: 1s;
+            }
+            &.up {
+              top: -100vh;
+              transition: 1s;
+            }
+            &.left {
+              left: -100vw;
+              transition: 1s;
+            }
+            &.right {
+              left: 100vw;
+              transition: 1s;
+            }
+          }
+        }
 
         &.birdwatching {
           margin: 20px auto;

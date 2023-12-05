@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { LinearGradient } from "react-text-gradients";
 import BirdIMG from "./img/bird.svg";
 import HighOrLowIMG from "./img/highorlow.svg";
+import KeyboardBackspaceTwoToneIcon from "@mui/icons-material/KeyboardBackspaceTwoTone";
 function App() {
   const buttonStyle = {
     color: "#ff00ab",
@@ -210,6 +211,32 @@ function App() {
                 }}
               >
                 <img style={{ width: 25 }} src={HighOrLowIMG} alt="highorlow" />
+              </div>
+            </div>
+          </Button>
+        </Link>
+        <Link to={`swipemaster`}>
+          <Button
+            size="small"
+            variant="contained"
+            style={{
+              backgroundColor: "rgb(63, 130, 185, 0.7)",
+            }}
+          >
+            <div style={buttonStyle}>
+              <span style={spanStyle}>Swipe master</span>
+              <div
+                style={{
+                  width: 26,
+                  height: 26,
+                  backgroundColor: "#fb00aa",
+                  borderRadius: 3,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <KeyboardBackspaceTwoToneIcon style={{ color: "#376085" }} />
               </div>
             </div>
           </Button>
