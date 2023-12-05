@@ -3,8 +3,17 @@ import { AdditionContext } from "../../../contexts/AdditionContext";
 import { AppContext } from "../../../contexts/AppContext";
 
 const Timer = () => {
-  const { time, setCurrentTime, currentTime, setIsWrong, isQuiqTest } =
-    useContext(AdditionContext);
+  const {
+    time,
+    setCurrentTime,
+    currentTime,
+    setIsWrong,
+    isQuiqTest,
+    currentScore,
+    bestResult,
+    setBestScore,
+    bestScore,
+  } = useContext(AdditionContext);
   const { playEndSound } = useContext(AppContext);
 
   useEffect(() => {
@@ -17,10 +26,28 @@ const Timer = () => {
     } else {
       if (isQuiqTest) {
         playEndSound();
+        if (currentScore > bestResult.best) {
+          const newBestScore = bestScore;
+          newBestScore[newBestScore.length - 1] = {
+            level: "quiqTest",
+            best: currentScore,
+          };
+          setBestScore(newBestScore);
+        }
       }
       setIsWrong(true);
     }
-  }, [currentTime, setCurrentTime, setIsWrong, playEndSound, isQuiqTest]);
+  }, [
+    currentTime,
+    setCurrentTime,
+    setIsWrong,
+    playEndSound,
+    isQuiqTest,
+    setBestScore,
+    bestScore,
+    currentScore,
+    bestResult,
+  ]);
 
   const timeForBar = isQuiqTest ? 20 : time;
 

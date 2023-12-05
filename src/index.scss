@@ -170,6 +170,74 @@ main {
         text-align: center;
         font-size: 100px;
 
+        &.addition {
+          height: 250px;
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          .current {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            &.show {
+              top: 50%;
+              transition: 0.3s;
+            }
+          }
+          .old {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            &.hide {
+              top: 200%;
+              transition: 0.3s;
+            }
+            &.bad {
+              transition: 0.3s;
+              animation: shake 1s ease-in-out forwards;
+            }
+            @keyframes shake {
+              0% {
+                left: 50%;
+              }
+              25% {
+                left: 51%;
+              }
+              35% {
+                left: 52%;
+              }
+
+              15% {
+                left: 54%;
+              }
+              5% {
+                left: 55%;
+              }
+              20% {
+                left: 49%;
+              }
+              50% {
+                left: 48%;
+              }
+              30% {
+                left: 47%;
+              }
+              10% {
+                left: 46%;
+              }
+
+              98%,
+              100% {
+                left: 150%;
+              }
+            }
+          }
+        }
+
         &.highorlow {
           position: relative;
           height: 234px;

@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
     audio.play();
   };
   const playEndSound = () => {
-    const audio = new Audio("/sounds/end.mp3");
+    const audio = new Audio("/sounds/score.mp3");
     audio.play();
   };
 

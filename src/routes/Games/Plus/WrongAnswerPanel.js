@@ -6,20 +6,18 @@ import { Textfit } from "react-textfit";
 
 const WrongAnswerPanel = () => {
   const {
-    level,
     time,
     setCurrentTime,
     currentScore,
     setCurrentScore,
     setIsWrong,
-    bestScore,
+    bestResult,
     newQuestion,
     isQuiqTest,
+    setIsQuiqTest,
   } = useContext(AdditionContext);
   const { setIsPlusStart, windowWidth } = useContext(AppContext);
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
+
   return (
     <div className="game__game">
       {" "}
@@ -46,7 +44,10 @@ const WrongAnswerPanel = () => {
           variant="contained"
           color="info"
           size="large"
-          onClick={() => setIsPlusStart(false)}
+          onClick={() => {
+            setIsPlusStart(false);
+            setIsQuiqTest(false);
+          }}
           style={{
             fontFamily: "Changa, serif",
           }}

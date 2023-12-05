@@ -14,7 +14,7 @@ const StartPanel = () => {
     setTime,
     level,
     setLevel,
-    bestScore,
+    bestResult,
     setIsWrong,
     newQuestion,
     setCurrentScore,
@@ -45,10 +45,6 @@ const StartPanel = () => {
       },
     },
   };
-
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
 
   return (
     <>
@@ -235,6 +231,7 @@ const StartPanel = () => {
             newQuestion();
             setCurrentScore(0);
             setIsQuiqTest(false);
+            setCurrentTime(time);
           }}
         >
           Start

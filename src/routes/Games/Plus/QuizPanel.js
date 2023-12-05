@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { AdditionContext } from "../../../contexts/AdditionContext";
 import Timer from "./Timer";
 import { Button } from "@mui/material";
@@ -24,33 +24,58 @@ const QuizPanel = () => {
     setCurrentScore,
     isWrong,
     setIsWrong,
-    bestScore,
     setBestScore,
     currentQuestion,
     newQuestion,
     isQuiqTest,
+    bestResult,
   } = useContext(AdditionContext);
   const { playSuccessSound, playFailSound } = useContext(AppContext);
+  const [tempStop, setTempStop] = useState(false);
+  const [isCurrentShow, setIsCurrentShow] = useState(false);
+  const [isBadAnswer, setIsBadAnswer] = useState(false);
 
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
   const handleIncorrect = useCallback(() => {
-    if (!isWrong) {
+    if (!isWrong && !tempStop) {
       if (currentScore > bestResult.best) {
-        setBestScore((prevScore) =>
-          prevScore.map((el) =>
-            el.level === level && el.time === time
-              ? { ...el, best: currentScore }
-              : el
-          )
-        );
+        if (!isQuiqTest) {
+          setBestScore((prevScore) =>
+            prevScore.map((el) =>
+              el.level === level && el.time === time
+                ? { ...el, best: currentScore }
+                : el
+            )
+          );
+        }
       }
-      if (!(currentQuestion.result === currentQuestion.visibleResult)) {
+      setIsCurrentShow(false);
+      setIsBadAnswer(false);
+      if (
+        !(
+          currentQuestion.current.result ===
+          currentQuestion.current.visibleResult
+        )
+      ) {
         setCurrentScore(currentScore + 1);
         playSuccessSound();
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
       } else {
         playFailSound();
+        setTempStop(true);
+        setTimeout(() => {
+          setTempStop(false);
+        }, 1000);
+
+        if (isQuiqTest) {
+          setTimeout(() => {
+            setIsBadAnswer(true);
+          }, 10);
+          setTimeout(() => {
+            setIsCurrentShow(true);
+          }, 800);
+        }
         if (!isQuiqTest) {
           setIsWrong(true);
         }
@@ -62,6 +87,7 @@ const QuizPanel = () => {
     }
   }, [
     bestResult,
+    tempStop,
     playSuccessSound,
     playFailSound,
     currentScore,
@@ -78,21 +104,43 @@ const QuizPanel = () => {
   ]);
 
   const handleCorrect = useCallback(() => {
-    if (!isWrong) {
+    if (!isWrong && !tempStop) {
       if (currentScore > bestResult.best) {
-        setBestScore((prevScore) =>
-          prevScore.map((el) =>
-            el.level === level && el.time === time
-              ? { ...el, best: currentScore }
-              : el
-          )
-        );
+        if (!isQuiqTest) {
+          setBestScore((prevScore) =>
+            prevScore.map((el) =>
+              el.level === level && el.time === time
+                ? { ...el, best: currentScore }
+                : el
+            )
+          );
+        }
       }
-      if (currentQuestion.result === currentQuestion.visibleResult) {
+      setIsCurrentShow(false);
+      setIsBadAnswer(false);
+      if (
+        currentQuestion.current.result === currentQuestion.current.visibleResult
+      ) {
         setCurrentScore(currentScore + 1);
         playSuccessSound();
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
       } else {
         playFailSound();
+        setTempStop(true);
+        setTimeout(() => {
+          setTempStop(false);
+        }, 1000);
+
+        if (isQuiqTest) {
+          setTimeout(() => {
+            setIsBadAnswer(true);
+          }, 10);
+          setTimeout(() => {
+            setIsCurrentShow(true);
+          }, 800);
+        }
         if (!isQuiqTest) {
           setIsWrong(true);
         }
@@ -104,6 +152,7 @@ const QuizPanel = () => {
     }
   }, [
     bestResult,
+    tempStop,
     playSuccessSound,
     playFailSound,
     currentScore,
@@ -143,11 +192,35 @@ const QuizPanel = () => {
     <div className="game__game">
       <div className="game__game-score">Current score: {currentScore}</div>
       <Timer />
-      <div className="game__game-challenge">
-        <Textfit mode="single">
-          {currentQuestion.firstNumber} + {currentQuestion.secondNumber} ={" "}
-          {currentQuestion.visibleResult}
-        </Textfit>
+      <div className="game__game-challenge addition">
+        <div
+          className={`current ${
+            isCurrentShow
+              ? "show"
+              : currentScore === 0 && !isBadAnswer
+              ? "show"
+              : ""
+          }`}
+        >
+          <Textfit mode="single">
+            {currentQuestion.current.firstNumber} +{" "}
+            {currentQuestion.current.secondNumber} ={" "}
+            {currentQuestion.current.visibleResult}
+          </Textfit>
+        </div>
+        {(isBadAnswer || currentScore > 0) && (
+          <div
+            className={`old ${
+              isBadAnswer ? "bad" : isCurrentShow ? "hide" : ""
+            }`}
+          >
+            <Textfit mode="single">
+              {currentQuestion.old.firstNumber} +{" "}
+              {currentQuestion.old.secondNumber} ={" "}
+              {currentQuestion.old.visibleResult}
+            </Textfit>
+          </div>
+        )}
       </div>
       <div className="game__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>
