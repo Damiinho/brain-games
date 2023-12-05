@@ -21,7 +21,6 @@ const StartPanel = () => {
     setCurrentScore,
   } = useContext(HighOrLowContext);
   const { setIsHighOrLowStart } = useContext(AppContext);
-  console.log(isMobile);
 
   const toggleFullscreen = useCallback(() => {
     const element = document.documentElement;
@@ -82,40 +81,12 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <p>Check if the division result is correct.</p>
+        <p>Judge whether the number is larger or smaller.</p>
         <p style={{ marginTop: 10 }}>
-          You can choose the answer using the mouse, the keyboard (left arrow –
-          bad, right arrow – good) or by touch.
+          You can choose the answer using the mouse, the keyboard (left or down
+          arrow – smaller, right or up arrow – larger) or by touch. You can
+          click the button or swipe up or down.
         </p>
-        <div className="game__description-buttons">
-          <Button variant="contained" color="error">
-            <div style={buttonStyle}>
-              {windowWidth > 400 && (
-                <>
-                  <div className="button-icon">
-                    {" "}
-                    <KeyboardBackspaceRoundedIcon />
-                  </div>
-                  <div className="button-text">incorrect</div>
-                </>
-              )}
-              <CancelIcon fontSize="large" />
-            </div>
-          </Button>
-          <Button variant="contained" color="success">
-            <div style={buttonStyle}>
-              {windowWidth > 400 && (
-                <>
-                  <div className="button-icon">
-                    <EastRoundedIcon />
-                  </div>
-                  <div className="button-text">correct</div>
-                </>
-              )}
-              <CheckCircleIcon fontSize="large" />
-            </div>
-          </Button>
-        </div>
       </div>
       <div className="game__options">
         <div className="game__options-title">Change options:</div>
