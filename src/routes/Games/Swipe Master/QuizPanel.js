@@ -20,16 +20,12 @@ const QuizPanel = () => {
     setCurrentScore,
     isWrong,
     setIsWrong,
-    bestScore,
+    bestResult,
     setBestScore,
     currentQuestion,
     newQuestion,
   } = useContext(SwipeMasterContext);
   const [direction, setDirection] = useState("down");
-
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
 
   const handleDirection = useCallback(
     (answer) => {

@@ -23,15 +23,12 @@ const QuizPanel = () => {
     setCurrentScore,
     isWrong,
     setIsWrong,
-    bestScore,
+    bestResult,
     setBestScore,
     currentQuestion,
     newQuestion,
   } = useContext(DivisionContext);
 
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
   const handleIncorrect = useCallback(() => {
     if (!isWrong) {
       if (currentScore > bestResult.best) {

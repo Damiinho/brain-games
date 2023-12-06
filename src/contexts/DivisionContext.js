@@ -362,7 +362,6 @@ export const DivisionProvider = ({ children }) => {
       divisorNumber.result[
         Math.floor(Math.random() * divisorNumber.result.length)
       ];
-    console.log(second);
 
     setCurrentQuestion({
       firstNumber: first,
@@ -372,6 +371,9 @@ export const DivisionProvider = ({ children }) => {
     });
     setCurrentTime(time);
   };
+  const bestResult = bestScore.find(
+    (element) => element.level === level && element.time === time
+  );
 
   const providerValue = {
     time,
@@ -390,6 +392,7 @@ export const DivisionProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
+    bestResult,
   };
 
   return (

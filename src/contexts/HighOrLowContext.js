@@ -127,6 +127,9 @@ export const HighOrLowProvider = ({ children }) => {
 
     setCurrentTime(time);
   };
+  const bestResult = bestScore.find(
+    (element) => element.level === level && element.time === time
+  );
 
   const providerValue = {
     time,
@@ -144,6 +147,7 @@ export const HighOrLowProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
+    bestResult,
   };
 
   return (

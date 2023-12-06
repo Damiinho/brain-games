@@ -1,58 +1,64 @@
 import { Button } from "@mui/material";
-import { useContext } from "react";
-import { AppContext } from "../../../contexts/AppContext";
-import { SwipeMasterContext } from "../../../contexts/SwipeMasterContext";
 import { Textfit } from "react-textfit";
 
-const WrongAnswerPanel = () => {
+const WrongAnswerPanel = (props) => {
   const {
-    level,
     time,
     setCurrentTime,
     currentScore,
     setCurrentScore,
     setIsWrong,
-    bestScore,
+    bestResult,
     newQuestion,
-  } = useContext(SwipeMasterContext);
-  const { setIsSwipeMasterStart, windowWidth } = useContext(AppContext);
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
+    isQuickTest,
+    setIsQuickTest,
+    setIsThisQuizStart,
+    id,
+  } = props;
+
   return (
     <div className="game__game">
-      {" "}
       <div className="game__game-buttons">
         <Button
           variant="contained"
-          color="secondary"
+          color="warning"
           size="large"
           onClick={() => {
-            setCurrentScore(0);
+            const timeForCurrentTime = isQuickTest ? 20 : time;
+            if (id === "highorlow") {
+              setCurrentScore(-1);
+            } else setCurrentScore(0);
             setIsWrong(false);
-            setCurrentTime(time);
             newQuestion();
+            setCurrentTime(timeForCurrentTime);
           }}
           style={{
             fontFamily: "Changa, serif",
           }}
         >
-          {windowWidth > 320 ? "restart" : "restart"}
+          restart
         </Button>
         <Button
           variant="contained"
-          color="primary"
+          color="info"
           size="large"
-          onClick={() => setIsSwipeMasterStart(false)}
+          onClick={() => {
+            setIsThisQuizStart(false);
+            if (setIsQuickTest) {
+              setIsQuickTest(false);
+            }
+          }}
           style={{
             fontFamily: "Changa, serif",
           }}
         >
-          {windowWidth > 320 ? "back" : "back"}
+          back
         </Button>
       </div>
       <div className="game__game-challenge">
-        <Textfit mode="single">Wrong answer</Textfit>
+        <Textfit mode="single">
+          {isQuickTest ? "The end" : "Wrong answer"}
+        </Textfit>
       </div>
       <div className="game__game-score">
         Last score: {currentScore}

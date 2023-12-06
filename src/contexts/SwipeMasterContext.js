@@ -57,6 +57,9 @@ export const SwipeMasterProvider = ({ children }) => {
 
     setCurrentTime(time);
   };
+  const bestResult = bestScore.find(
+    (element) => element.level === level && element.time === time
+  );
 
   const providerValue = {
     time,
@@ -74,6 +77,7 @@ export const SwipeMasterProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
+    bestResult,
   };
 
   return (

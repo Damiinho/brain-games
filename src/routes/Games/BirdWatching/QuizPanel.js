@@ -10,15 +10,11 @@ const QuizPanel = () => {
     currentScore,
     setCurrentScore,
     setIsWrong,
-    bestScore,
+    bestResult,
     setBestScore,
     currentQuestion,
     newQuestion,
   } = useContext(BirdWatchingContext);
-
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
 
   const handleCorrect = useCallback(
     (color) => {

@@ -56,6 +56,58 @@ export const SubtractionProvider = ({ children }) => {
     { level: 4, time: 5, best: 0 },
     { level: 5, time: 5, best: 0 },
   ]);
+  const newQuestion = () => {
+    const possibleNumbers =
+      level === 1
+        ? numbers.trainee
+        : level === 2
+        ? numbers.easy
+        : level === 3
+        ? numbers.medium
+        : level === 4
+        ? numbers.hard
+        : level === 5
+        ? numbers.extreme
+        : null;
+    const numberOfNumbers =
+      level === 1
+        ? 5
+        : level === 2
+        ? 10
+        : level === 3
+        ? 20
+        : level === 4
+        ? 50
+        : level === 5
+        ? 100
+        : null;
+
+    const first = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
+    const second = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
+    const result = first > second ? first - second : second - first;
+    const possible = [
+      result,
+      result,
+      result,
+      result,
+      result - 2,
+      result - 1,
+      result + 2,
+      result + 1,
+    ];
+    setCurrentQuestion({
+      firstNumber: first,
+      secondNumber: second,
+      result: result,
+      possibleResults: possible,
+      visibleResult: possible[Math.floor(Math.random() * 8)],
+    });
+    setCurrentTime(time);
+  };
+
+  const bestResult = bestScore.find(
+    (element) => element.level === level && element.time === time
+  );
 
   const providerValue = {
     time,
@@ -73,6 +125,8 @@ export const SubtractionProvider = ({ children }) => {
     numbers,
     bestScore,
     setBestScore,
+    bestResult,
+    newQuestion,
   };
 
   return (

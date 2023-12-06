@@ -25,16 +25,12 @@ const QuizPanel = () => {
     setCurrentScore,
     isWrong,
     setIsWrong,
-    bestScore,
+    bestResult,
     setBestScore,
     currentQuestion,
     newQuestion,
   } = useContext(HighOrLowContext);
   const [upOrDown, setUpOrDown] = useState("down");
-
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
 
   const handleLow = useCallback(() => {
     if (!(currentScore < 0)) {

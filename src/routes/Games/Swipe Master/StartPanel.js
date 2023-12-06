@@ -12,12 +12,11 @@ import {
 
 const StartPanel = () => {
   const {
-    windowWidth,
     time,
     setTime,
     level,
     setLevel,
-    bestScore,
+    bestResult,
     setIsWrong,
     newQuestion,
     setCurrentScore,
@@ -68,10 +67,6 @@ const StartPanel = () => {
     },
   };
 
-  const bestResult = bestScore.find(
-    (element) => element.level === level && element.time === time
-  );
-
   const arrows = [
     <WestRounded style={{ fontSize: 100 }} />,
     <EastRounded style={{ fontSize: 100 }} />,
@@ -82,19 +77,23 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <p>Swipe in the appropriate direction (the direction of the arrow).</p>
-        <p style={{ marginTop: 10 }}>
-          Be careful! If the background color of the arrow is red, swipe in the
-          opposite direction.
-        </p>
-        <p style={{ marginTop: 10 }}>
-          You can control by touch (and swiping) or keyboard (arrows).
-        </p>
+        <div className="game__description-text">
+          <p>
+            Swipe in the appropriate direction (the direction of the arrow).
+          </p>
+          <p style={{ marginTop: 10 }}>
+            Be careful! If the background color of the arrow is red, swipe in
+            the opposite direction.
+          </p>
+          <p style={{ marginTop: 10 }}>
+            You can control by touch (and swiping) or keyboard (arrows).
+          </p>
+        </div>
         <div className="game__description-buttons">
           <div
             style={{
-              width: 120,
-              height: 120,
+              width: 60,
+              height: 60,
               backgroundColor: "#3782bb99",
               display: "flex",
               justifyContent: "center",
@@ -102,12 +101,14 @@ const StartPanel = () => {
               borderRadius: 20,
             }}
           >
-            {arrows[Math.floor(Math.random() * 4)]}
+            <div style={{ transform: "scale(0.5)" }}>
+              {arrows[Math.floor(Math.random() * 4)]}
+            </div>
           </div>
           <div
             style={{
-              width: 120,
-              height: 120,
+              width: 60,
+              height: 60,
               backgroundColor: "#fb00aa99",
               display: "flex",
               justifyContent: "center",
@@ -115,139 +116,153 @@ const StartPanel = () => {
               borderRadius: 20,
             }}
           >
-            {arrows[Math.floor(Math.random() * 4)]}
+            <div style={{ transform: "scale(0.5)" }}>
+              {arrows[Math.floor(Math.random() * 4)]}
+            </div>
           </div>
         </div>
       </div>
-      <div className="game__options">
-        <div className="game__options-title">Change options:</div>
-        <div className="game__options-main">
-          <div className="game__options-main__element">
-            <p>Time:</p>
-
-            <Select
-              value={time}
-              onChange={(e) => {
-                setTime(e.target.value);
-              }}
-              style={{
-                color: "white",
-                fontSize: windowWidth > 400 ? 20 : 16,
-                fontFamily: "Times New Roman, serif",
-                backgroundColor: "#55555555",
-                width: windowWidth > 400 ? 200 : 120,
-                textAlign: "left",
-                paddingLeft: 10,
-              }} // Kolor tekstu
-              MenuProps={{
-                anchorOrigin: {
-                  vertical: "bottom",
-                  horizontal: "left",
-                },
-                transformOrigin: {
-                  vertical: "top",
-                  horizontal: "left",
-                },
-                PaperProps: {
-                  style: {
-                    backgroundColor: "#555555bb", // Kolor tła rozwijanej listy
-                    color: "white", // Kolor tekstu na liście
-                  },
-                },
-              }}
-            >
-              <MenuItem value={1} sx={itemStyle}>
-                1 second
-              </MenuItem>
-              <MenuItem value={2} sx={itemStyle}>
-                2 seconds
-              </MenuItem>
-              <MenuItem value={3} sx={itemStyle}>
-                3 seconds
-              </MenuItem>
-              <MenuItem value={4} sx={itemStyle}>
-                4 seconds
-              </MenuItem>
-              <MenuItem value={5} sx={itemStyle}>
-                5 seconds
-              </MenuItem>
-            </Select>
+      <div className="game__modes">
+        <div className="game__modes-element infinite">
+          <div className="game__modes-element__title">Infinite mode</div>
+          <div className="game__modes-element__description">
+            <div>best result: {bestResult.best}</div>
           </div>
-          <div className="game__options-main__element">
-            <p>Level:</p>
-
-            <Select
-              value={level}
-              onChange={(e) => {
-                setLevel(e.target.value);
-              }}
-              style={{
-                color: "white",
-                fontSize: windowWidth > 400 ? 20 : 16,
-                fontFamily: "Times New Roman, serif",
-                backgroundColor: "#55555555",
-                width: windowWidth > 400 ? 200 : 120,
-                textAlign: "left",
-                paddingLeft: 10,
-              }}
-              MenuProps={{
-                anchorOrigin: {
-                  vertical: "bottom",
-                  horizontal: "left",
-                },
-                transformOrigin: {
-                  vertical: "top",
-                  horizontal: "left",
-                },
-                PaperProps: {
-                  style: {
-                    backgroundColor: "#555555bb",
+          <div className="game__modes-element__selectors">
+            <div className="game__modes-element__selectors-item">
+              <div className="game__modes-element__selectors-item__title">
+                Time to answer
+              </div>
+              <div className="game__modes-element__selectors-item__select">
+                <Select
+                  value={time}
+                  onChange={(e) => {
+                    setTime(e.target.value);
+                  }}
+                  style={{
                     color: "white",
-                  },
-                },
+                    fontFamily: "Changa, serif",
+                    backgroundColor: "#55555555",
+                    width: "auto",
+                    maxWidth: 140,
+                    height: 40,
+                    textAlign: "left",
+                    // paddingLeft: 10,
+                  }}
+                  MenuProps={{
+                    anchorOrigin: {
+                      vertical: "bottom",
+                      horizontal: "left",
+                    },
+                    transformOrigin: {
+                      vertical: "top",
+                      horizontal: "left",
+                    },
+                    PaperProps: {
+                      style: {
+                        backgroundColor: "#555555bb",
+                        color: "white",
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem value={1} sx={itemStyle}>
+                    1 second
+                  </MenuItem>
+                  <MenuItem value={2} sx={itemStyle}>
+                    2 seconds
+                  </MenuItem>
+                  <MenuItem value={3} sx={itemStyle}>
+                    3 seconds
+                  </MenuItem>
+                  <MenuItem value={4} sx={itemStyle}>
+                    4 seconds
+                  </MenuItem>
+                  <MenuItem value={5} sx={itemStyle}>
+                    5 seconds
+                  </MenuItem>
+                </Select>
+              </div>
+            </div>{" "}
+            <div className="game__modes-element__selectors-item">
+              <div className="game__modes-element__selectors-item__title">
+                Level
+              </div>
+              <div className="game__modes-element__selectors-item__select">
+                <Select
+                  value={level}
+                  onChange={(e) => {
+                    setLevel(e.target.value);
+                  }}
+                  style={{
+                    color: "white",
+                    fontFamily: "Changa, serif",
+                    backgroundColor: "#55555555",
+                    width: "auto",
+                    maxWidth: 140,
+                    height: 40,
+                    textAlign: "left",
+                    // paddingLeft: 10,
+                  }}
+                  MenuProps={{
+                    anchorOrigin: {
+                      vertical: "bottom",
+                      horizontal: "left",
+                    },
+                    transformOrigin: {
+                      vertical: "top",
+                      horizontal: "left",
+                    },
+                    PaperProps: {
+                      style: {
+                        backgroundColor: "#555555bb",
+                        color: "white",
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem value={1} sx={itemStyle}>
+                    Trainee
+                  </MenuItem>
+                  <MenuItem value={2} sx={itemStyle}>
+                    Easy
+                  </MenuItem>
+                  <MenuItem value={3} sx={itemStyle}>
+                    Medium
+                  </MenuItem>
+                  <MenuItem value={4} sx={itemStyle}>
+                    Hard
+                  </MenuItem>
+                  <MenuItem value={5} sx={itemStyle}>
+                    Extreme
+                  </MenuItem>
+                  <MenuItem value={6} sx={itemStyle}>
+                    Increasing
+                  </MenuItem>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <div className="game__modes-element__start">
+            <Button
+              variant="contained"
+              size="large"
+              style={{
+                fontFamily: "Changa, serif",
+                fontSize: 25,
+              }}
+              onClick={() => {
+                setIsSwipeMasterStart(true);
+                setIsWrong(false);
+                newQuestion();
+                setCurrentScore(0);
+                toggleFullscreen();
               }}
             >
-              <MenuItem value={1} sx={itemStyle}>
-                Trainee
-              </MenuItem>
-              <MenuItem value={2} sx={itemStyle}>
-                Easy
-              </MenuItem>
-              <MenuItem value={3} sx={itemStyle}>
-                Medium
-              </MenuItem>
-              <MenuItem value={4} sx={itemStyle}>
-                Hard
-              </MenuItem>
-              <MenuItem value={5} sx={itemStyle}>
-                Extreme
-              </MenuItem>
-              <MenuItem value={6} sx={itemStyle}>
-                Increasing
-              </MenuItem>
-            </Select>
+              Start
+            </Button>
           </div>
         </div>
-      </div>{" "}
-      <div className="game__options-best">Best result: {bestResult.best}</div>
-      <div className="game__start">
-        <Button
-          variant="contained"
-          size={windowWidth > 400 ? "large" : "medium"}
-          style={{
-            fontFamily: "Changa, serif",
-            fontSize: windowWidth > 400 ? 25 : 20,
-          }}
-          onClick={() => {
-            setIsSwipeMasterStart(true);
-            setIsWrong(false);
-            newQuestion();
-            setCurrentScore(0);
-            toggleFullscreen();
-          }}
-        >
-          Start
-        </Button>
       </div>
     </>
   );

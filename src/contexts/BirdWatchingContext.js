@@ -507,6 +507,10 @@ export const BirdWatchingProvider = ({ children }) => {
     setCurrentTime(time);
   };
 
+  const bestResult = bestScore.find(
+    (element) => element.level === level && element.time === time
+  );
+
   const providerValue = {
     time,
     setTime,
@@ -523,6 +527,7 @@ export const BirdWatchingProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
+    bestResult,
   };
 
   return (
