@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { SwipeMasterContext } from "../../../contexts/SwipeMasterContext";
-import Timer from "./Timer";
+import Timer from "../../../components/Timer";
 
 import { useSwipeable } from "react-swipeable";
 import {
@@ -118,7 +118,12 @@ const QuizPanel = () => {
       <div className="game__game-score">
         Current score: {currentScore < 0 ? "0" : currentScore}
       </div>
-      <Timer />
+      <Timer
+        time={time}
+        setCurrentTime={setCurrentTime}
+        currentTime={currentTime}
+        setIsWrong={setIsWrong}
+      />
       <div className={`game__game-challenge swipemaster`}>
         <div
           className={`current ${

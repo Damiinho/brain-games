@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { AdditionContext } from "../../../contexts/AdditionContext";
-import Timer from "./Timer";
+import Timer from "../../../components/Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -29,6 +29,8 @@ const QuizPanel = () => {
     newQuestion,
     isQuickTest,
     bestResult,
+    currentTime,
+    bestScore,
   } = useContext(AdditionContext);
   const { playSuccessSound, playFailSound } = useContext(AppContext);
   const [tempStop, setTempStop] = useState(false);
@@ -191,7 +193,17 @@ const QuizPanel = () => {
   return (
     <div className="game__game">
       <div className="game__game-score">Current score: {currentScore}</div>
-      <Timer />
+      <Timer
+        time={time}
+        setCurrentTime={setCurrentTime}
+        currentTime={currentTime}
+        setIsWrong={setIsWrong}
+        isQuickTest={isQuickTest}
+        currentScore={currentScore}
+        bestResult={bestResult}
+        bestScore={bestScore}
+        setBestScore={setBestScore}
+      />
       <div className="game__game-challenge addition">
         <div
           className={`current ${

@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
-import { AdditionContext } from "../../../contexts/AdditionContext";
-import { AppContext } from "../../../contexts/AppContext";
+import { AppContext } from "../contexts/AppContext";
 
-const Timer = () => {
+const Timer = (props) => {
+  const { playEndSound } = useContext(AppContext);
   const {
     time,
     setCurrentTime,
@@ -11,10 +11,10 @@ const Timer = () => {
     isQuickTest,
     currentScore,
     bestResult,
-    setBestScore,
     bestScore,
-  } = useContext(AdditionContext);
-  const { playEndSound } = useContext(AppContext);
+    setBestScore,
+    // id,
+  } = props;
 
   useEffect(() => {
     if (currentTime > 0) {
@@ -41,30 +41,38 @@ const Timer = () => {
     currentTime,
     setCurrentTime,
     setIsWrong,
-    playEndSound,
-    isQuickTest,
-    setBestScore,
-    bestScore,
-    currentScore,
     bestResult,
+    currentScore,
+    bestScore,
+    isQuickTest,
+    playEndSound,
+    setBestScore,
   ]);
 
   const timeForBar = isQuickTest ? 20 : time;
 
   return (
-    <div className="game__game-time">
-      <div
-        className="game__game-time__contain"
-        style={{
-          position: "absolute",
-          width: `${100 - (currentTime / timeForBar) * 100}%`,
-          height: 25,
-          right: 0,
-          top: 0,
-          backgroundColor: "#111111",
-        }}
-      ></div>
-    </div>
+    <>
+      {currentScore < 0 ? (
+        <div>
+          <div style={{ height: 25, width: "100%", right: 0, top: 0 }}></div>
+        </div>
+      ) : (
+        <div className="game__game-time">
+          <div
+            className="game__game-time__contain"
+            style={{
+              position: "absolute",
+              width: `${100 - (currentTime / timeForBar) * 100}%`,
+              height: 25,
+              right: 0,
+              top: 0,
+              backgroundColor: "#111111",
+            }}
+          ></div>
+        </div>
+      )}
+    </>
   );
 };
 

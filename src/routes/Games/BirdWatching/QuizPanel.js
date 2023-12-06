@@ -1,6 +1,6 @@
 import { useCallback, useContext } from "react";
 import { BirdWatchingContext } from "../../../contexts/BirdWatchingContext";
-import Timer from "./Timer";
+import Timer from "../../../components/Timer";
 
 const QuizPanel = () => {
   const {
@@ -14,6 +14,7 @@ const QuizPanel = () => {
     setBestScore,
     currentQuestion,
     newQuestion,
+    currentTime,
   } = useContext(BirdWatchingContext);
 
   const handleCorrect = useCallback(
@@ -52,7 +53,12 @@ const QuizPanel = () => {
   return (
     <div className="game__game">
       <div className="game__game-score">Current score: {currentScore}</div>
-      <Timer />
+      <Timer
+        time={time}
+        setCurrentTime={setCurrentTime}
+        currentTime={currentTime}
+        setIsWrong={setIsWrong}
+      />
       <div
         className={`game__game-challenge birdwatching ${
           level === 1

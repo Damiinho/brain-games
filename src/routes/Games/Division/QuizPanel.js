@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from "react";
 import { DivisionContext } from "../../../contexts/DivisionContext";
-import Timer from "./Timer";
+import Timer from "../../../components/Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -27,6 +27,7 @@ const QuizPanel = () => {
     setBestScore,
     currentQuestion,
     newQuestion,
+    currentTime,
   } = useContext(DivisionContext);
 
   const handleIncorrect = useCallback(() => {
@@ -118,7 +119,12 @@ const QuizPanel = () => {
   return (
     <div className="game__game">
       <div className="game__game-score">Current score: {currentScore}</div>
-      <Timer />
+      <Timer
+        time={time}
+        setCurrentTime={setCurrentTime}
+        currentTime={currentTime}
+        setIsWrong={setIsWrong}
+      />
       <div className="game__game-challenge">
         <Textfit mode="single">
           {parseFloat(currentQuestion.firstNumber.toFixed(2))} /{" "}

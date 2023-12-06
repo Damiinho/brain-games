@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
-import Timer from "./Timer";
+import Timer from "../../../components/Timer";
 import { Textfit } from "react-textfit";
 import { Button } from "@mui/material";
 import ArrowCircleDownRoundedIcon from "@mui/icons-material/ArrowCircleDownRounded";
@@ -147,7 +147,13 @@ const QuizPanel = () => {
       <div className="game__game-score">
         Current score: {currentScore < 0 ? "0" : currentScore}
       </div>
-      <Timer />
+      <Timer
+        time={time}
+        setCurrentTime={setCurrentTime}
+        currentTime={currentTime}
+        setIsWrong={setIsWrong}
+        currentScore={currentScore}
+      />
       <div className={`game__game-challenge highorlow`}>
         <div
           className={`currentNumber ${
