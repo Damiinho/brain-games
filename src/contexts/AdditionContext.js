@@ -9,7 +9,7 @@ export const AdditionProvider = ({ children }) => {
   const [currentScore, setCurrentScore] = useState(0);
   const [isWrong, setIsWrong] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState({});
-  const [isQuiqTest, setIsQuiqTest] = useState(false);
+  const [isQuickTest, setIsQuickTest] = useState(false);
   const numbers = {
     trainee: [1, 2, 3, 4, 5],
     easy: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -132,12 +132,12 @@ export const AdditionProvider = ({ children }) => {
     const second = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
     const result = first + second;
     const possible =
-      level === 6 || isQuiqTest
+      level === 6 || isQuickTest
         ? isWrong === true
           ? [result, result, result - 1, result + 1]
-          : (isQuiqTest && currentScore < 5) || currentScore < 10
+          : (isQuickTest && currentScore < 5) || currentScore < 10
           ? [result, result, result - 1, result + 1]
-          : (isQuiqTest && currentScore < 10) || currentScore < 25
+          : (isQuickTest && currentScore < 10) || currentScore < 25
           ? [
               result,
               result,
@@ -148,7 +148,7 @@ export const AdditionProvider = ({ children }) => {
               result + 2,
               result + 1,
             ]
-          : (isQuiqTest && currentScore < 15) || currentScore < 50
+          : (isQuickTest && currentScore < 15) || currentScore < 50
           ? [
               result,
               result,
@@ -240,14 +240,14 @@ export const AdditionProvider = ({ children }) => {
             Math.floor(
               Math.random() *
                 `${
-                  level === 6 || isQuiqTest
+                  level === 6 || isQuickTest
                     ? isWrong === true
                       ? 4
-                      : (isQuiqTest && currentScore < 5) || currentScore < 10
+                      : (isQuickTest && currentScore < 5) || currentScore < 10
                       ? 4
-                      : (isQuiqTest && currentScore < 10) || currentScore < 25
+                      : (isQuickTest && currentScore < 10) || currentScore < 25
                       ? 8
-                      : (isQuiqTest && currentScore < 15) || currentScore < 50
+                      : (isQuickTest && currentScore < 15) || currentScore < 50
                       ? 12
                       : 16
                     : level === 1
@@ -262,11 +262,11 @@ export const AdditionProvider = ({ children }) => {
           ],
       },
     });
-    if (!isQuiqTest) {
+    if (!isQuickTest) {
       setCurrentTime(time);
     }
   };
-  const bestResult = isQuiqTest
+  const bestResult = isQuickTest
     ? bestScore[bestScore.length - 1]
     : bestScore.find(
         (element) => element.level === level && element.time === time
@@ -289,8 +289,8 @@ export const AdditionProvider = ({ children }) => {
     bestScore,
     setBestScore,
     newQuestion,
-    isQuiqTest,
-    setIsQuiqTest,
+    isQuickTest,
+    setIsQuickTest,
     bestResult,
   };
 

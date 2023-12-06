@@ -27,7 +27,7 @@ const QuizPanel = () => {
     setBestScore,
     currentQuestion,
     newQuestion,
-    isQuiqTest,
+    isQuickTest,
     bestResult,
   } = useContext(AdditionContext);
   const { playSuccessSound, playFailSound } = useContext(AppContext);
@@ -38,7 +38,7 @@ const QuizPanel = () => {
   const handleIncorrect = useCallback(() => {
     if (!isWrong && !tempStop) {
       if (currentScore > bestResult.best) {
-        if (!isQuiqTest) {
+        if (!isQuickTest) {
           setBestScore((prevScore) =>
             prevScore.map((el) =>
               el.level === level && el.time === time
@@ -68,7 +68,7 @@ const QuizPanel = () => {
           setTempStop(false);
         }, 1000);
 
-        if (isQuiqTest) {
+        if (isQuickTest) {
           setTimeout(() => {
             setIsBadAnswer(true);
           }, 10);
@@ -76,12 +76,12 @@ const QuizPanel = () => {
             setIsCurrentShow(true);
           }, 800);
         }
-        if (!isQuiqTest) {
+        if (!isQuickTest) {
           setIsWrong(true);
         }
       }
       newQuestion();
-      if (!isQuiqTest) {
+      if (!isQuickTest) {
         setCurrentTime(time);
       }
     }
@@ -100,13 +100,13 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
-    isQuiqTest,
+    isQuickTest,
   ]);
 
   const handleCorrect = useCallback(() => {
     if (!isWrong && !tempStop) {
       if (currentScore > bestResult.best) {
-        if (!isQuiqTest) {
+        if (!isQuickTest) {
           setBestScore((prevScore) =>
             prevScore.map((el) =>
               el.level === level && el.time === time
@@ -133,7 +133,7 @@ const QuizPanel = () => {
           setTempStop(false);
         }, 1000);
 
-        if (isQuiqTest) {
+        if (isQuickTest) {
           setTimeout(() => {
             setIsBadAnswer(true);
           }, 10);
@@ -141,12 +141,12 @@ const QuizPanel = () => {
             setIsCurrentShow(true);
           }, 800);
         }
-        if (!isQuiqTest) {
+        if (!isQuickTest) {
           setIsWrong(true);
         }
       }
       newQuestion();
-      if (!isQuiqTest) {
+      if (!isQuickTest) {
         setCurrentTime(time);
       }
     }
@@ -165,7 +165,7 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
-    isQuiqTest,
+    isQuickTest,
   ]);
 
   const handleKeyDown = useCallback(

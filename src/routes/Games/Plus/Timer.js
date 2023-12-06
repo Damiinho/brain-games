@@ -8,7 +8,7 @@ const Timer = () => {
     setCurrentTime,
     currentTime,
     setIsWrong,
-    isQuiqTest,
+    isQuickTest,
     currentScore,
     bestResult,
     setBestScore,
@@ -24,7 +24,7 @@ const Timer = () => {
       );
       return () => clearTimeout(timer);
     } else {
-      if (isQuiqTest) {
+      if (isQuickTest) {
         playEndSound();
         if (currentScore > bestResult.best) {
           const newBestScore = bestScore;
@@ -42,14 +42,14 @@ const Timer = () => {
     setCurrentTime,
     setIsWrong,
     playEndSound,
-    isQuiqTest,
+    isQuickTest,
     setBestScore,
     bestScore,
     currentScore,
     bestResult,
   ]);
 
-  const timeForBar = isQuiqTest ? 20 : time;
+  const timeForBar = isQuickTest ? 20 : time;
 
   return (
     <div className="game__game-time">

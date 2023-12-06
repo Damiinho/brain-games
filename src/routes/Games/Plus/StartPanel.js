@@ -18,8 +18,9 @@ const StartPanel = () => {
     setIsWrong,
     newQuestion,
     setCurrentScore,
-    setIsQuiqTest,
+    setIsQuickTest,
     setCurrentTime,
+    bestScore,
   } = useContext(AdditionContext);
   const { setIsPlusStart } = useContext(AppContext);
 
@@ -84,13 +85,13 @@ const StartPanel = () => {
           </Button>
         </div>
       </div>
-      <div className="game__start">
+      <div className="game__quick">
         <Button
           variant="outlined"
-          size={windowWidth > 400 ? "large" : "medium"}
+          size={windowWidth > 400 ? "large" : "large"}
           style={{
             fontFamily: "Changa, serif",
-            fontSize: windowWidth > 400 ? 25 : 20,
+            fontSize: windowWidth > 400 ? 25 : 25,
             marginRight: 10,
           }}
           onClick={() => {
@@ -99,18 +100,33 @@ const StartPanel = () => {
             newQuestion();
             setCurrentScore(0);
             setCurrentTime(20);
-            setIsQuiqTest(true);
+            setIsQuickTest(true);
           }}
         >
-          Quiq test
-        </Button>{" "}
-        (most in 20 seconds)
+          Quick test
+        </Button>
+        <div className="game__quick-text">
+          <div>most in 20 seconds</div>
+          <div>best: {bestScore[bestScore.length - 1].best}</div>
+        </div>
       </div>
       <div className="game__options">
-        <div className="game__options-title">Change options:</div>
+        <div className="game__options-title">
+          <div>Infinite mode</div>
+          <div
+            style={{
+              // border: "1px solid rgba(25, 118, 210, 0.5)",
+              borderRadius: 4,
+              padding: "5px 15px",
+              color: "#1976d2",
+            }}
+          >
+            best result: {bestResult.best}
+          </div>
+        </div>
         <div className="game__options-main">
           <div className="game__options-main__element">
-            <p>Time:</p>
+            <p>Time to answer:</p>
 
             <Select
               value={time}
@@ -119,13 +135,13 @@ const StartPanel = () => {
               }}
               style={{
                 color: "white",
-                fontSize: windowWidth > 400 ? 20 : 16,
+                fontSize: windowWidth > 400 ? 20 : 20,
                 fontFamily: "Times New Roman, serif",
                 backgroundColor: "#55555555",
-                width: windowWidth > 400 ? 200 : 120,
+                width: windowWidth > 400 ? 200 : 200,
                 textAlign: "left",
                 paddingLeft: 10,
-              }} // Kolor tekstu
+              }}
               MenuProps={{
                 anchorOrigin: {
                   vertical: "bottom",
@@ -137,8 +153,8 @@ const StartPanel = () => {
                 },
                 PaperProps: {
                   style: {
-                    backgroundColor: "#555555bb", // Kolor tła rozwijanej listy
-                    color: "white", // Kolor tekstu na liście
+                    backgroundColor: "#555555bb",
+                    color: "white",
                   },
                 },
               }}
@@ -170,10 +186,10 @@ const StartPanel = () => {
               }}
               style={{
                 color: "white",
-                fontSize: windowWidth > 400 ? 20 : 16,
+                fontSize: windowWidth > 400 ? 20 : 20,
                 fontFamily: "Times New Roman, serif",
                 backgroundColor: "#55555555",
-                width: windowWidth > 400 ? 200 : 120,
+                width: windowWidth > 400 ? 200 : 200,
                 textAlign: "left",
                 paddingLeft: 10,
               }}
@@ -215,27 +231,26 @@ const StartPanel = () => {
             </Select>
           </div>
         </div>
-      </div>{" "}
-      <div className="game__options-best">Best result: {bestResult.best}</div>
-      <div className="game__start">
-        <Button
-          variant="contained"
-          size={windowWidth > 400 ? "large" : "medium"}
-          style={{
-            fontFamily: "Changa, serif",
-            fontSize: windowWidth > 400 ? 25 : 20,
-          }}
-          onClick={() => {
-            setIsPlusStart(true);
-            setIsWrong(false);
-            newQuestion();
-            setCurrentScore(0);
-            setIsQuiqTest(false);
-            setCurrentTime(time);
-          }}
-        >
-          Start
-        </Button>
+        <div className="game__start">
+          <Button
+            variant="contained"
+            size={windowWidth > 400 ? "large" : "large"}
+            style={{
+              fontFamily: "Changa, serif",
+              fontSize: windowWidth > 400 ? 25 : 25,
+            }}
+            onClick={() => {
+              setIsPlusStart(true);
+              setIsWrong(false);
+              newQuestion();
+              setCurrentScore(0);
+              setIsQuickTest(false);
+              setCurrentTime(time);
+            }}
+          >
+            Start
+          </Button>
+        </div>
       </div>
     </>
   );

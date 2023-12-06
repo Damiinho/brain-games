@@ -13,8 +13,8 @@ const WrongAnswerPanel = () => {
     setIsWrong,
     bestResult,
     newQuestion,
-    isQuiqTest,
-    setIsQuiqTest,
+    isQuickTest,
+    setIsQuickTest,
   } = useContext(AdditionContext);
   const { setIsPlusStart, windowWidth } = useContext(AppContext);
 
@@ -27,7 +27,7 @@ const WrongAnswerPanel = () => {
           color="warning"
           size="large"
           onClick={() => {
-            const timeForCurrentTime = isQuiqTest ? 20 : time;
+            const timeForCurrentTime = isQuickTest ? 20 : time;
 
             setCurrentScore(0);
             setIsWrong(false);
@@ -46,7 +46,7 @@ const WrongAnswerPanel = () => {
           size="large"
           onClick={() => {
             setIsPlusStart(false);
-            setIsQuiqTest(false);
+            setIsQuickTest(false);
           }}
           style={{
             fontFamily: "Changa, serif",
@@ -57,7 +57,7 @@ const WrongAnswerPanel = () => {
       </div>
       <div className="game__game-challenge">
         <Textfit mode="single">
-          {isQuiqTest ? "The end" : "Wrong answer"}
+          {isQuickTest ? "The end" : "Wrong answer"}
         </Textfit>
       </div>
       <div className="game__game-score">
