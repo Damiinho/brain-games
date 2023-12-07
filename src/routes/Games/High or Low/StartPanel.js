@@ -64,13 +64,15 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <div className="game__description-text">
-          <p>Judge whether the number is larger or smaller.</p>
-          <p style={{ marginTop: 10 }}>
-            You can choose the answer using the mouse, the keyboard (left or
-            down arrow – smaller, right or up arrow – larger) or by touch (by
-            swipe up or down).
-          </p>
+        <div className="game__description-main">
+          <div className="game__description-main__text">
+            <p>Judge whether the number is larger or smaller.</p>
+            <p style={{ marginTop: 10 }}>
+              You can choose the answer using the mouse, the keyboard (left or
+              down arrow – smaller, right or up arrow – larger) or by touch (by
+              swipe up or down).
+            </p>
+          </div>
         </div>
       </div>
       <div className="game__modes">

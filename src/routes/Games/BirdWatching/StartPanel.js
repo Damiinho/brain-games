@@ -34,12 +34,14 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <div className="game__description-text">
-          <p>Check which colored squares there are the most.</p>
-          <p style={{ marginTop: 10 }}>
-            You can choose your answer by clicking on any square (by mouse or
-            touch) with the color you think is most abundant.
-          </p>
+        <div className="game__description-main">
+          <div className="game__description-main__text">
+            <p>Check which colored squares there are the most.</p>
+            <p style={{ marginTop: 10 }}>
+              You can choose your answer by clicking on any square (by mouse or
+              touch) with the color you think is most abundant.
+            </p>
+          </div>
         </div>
       </div>
       <div className="game__modes">

@@ -49,41 +49,43 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <div className="game__description-text">
-          <p>Check if the subtraction result is correct.</p>
-          <p style={{ marginTop: 10 }}>
-            You can choose the answer using the mouse, the keyboard (left arrow
-            – bad, right arrow – good) or by touch.
-          </p>
-        </div>
-        <div className="game__description-buttons">
-          <Button variant="contained" color="error">
-            <div style={buttonStyle}>
-              {windowWidth > 400 && (
-                <>
-                  <div className="button-icon">
-                    {" "}
-                    <KeyboardBackspaceRoundedIcon />
-                  </div>
-                  <div className="button-text">incorrect</div>
-                </>
-              )}
-              <CancelIcon fontSize="large" />
-            </div>
-          </Button>
-          <Button variant="contained" color="success">
-            <div style={buttonStyle}>
-              {windowWidth > 400 && (
-                <>
-                  <div className="button-icon">
-                    <EastRoundedIcon />
-                  </div>
-                  <div className="button-text">correct</div>
-                </>
-              )}
-              <CheckCircleIcon fontSize="large" />
-            </div>
-          </Button>
+        <div className="game__description-main">
+          <div className="game__description-main__text">
+            <p>Check if the subtraction result is correct.</p>
+            <p style={{ marginTop: 10 }}>
+              You can choose the answer using the mouse, the keyboard (left
+              arrow – bad, right arrow – good) or by touch.
+            </p>
+          </div>
+          <div className="game__description-main__buttons">
+            <Button variant="contained" color="error">
+              <div style={buttonStyle}>
+                {windowWidth > 400 && (
+                  <>
+                    <div className="button-icon">
+                      {" "}
+                      <KeyboardBackspaceRoundedIcon />
+                    </div>
+                    <div className="button-text">incorrect</div>
+                  </>
+                )}
+                <CancelIcon fontSize="large" />
+              </div>
+            </Button>
+            <Button variant="contained" color="success">
+              <div style={buttonStyle}>
+                {windowWidth > 400 && (
+                  <>
+                    <div className="button-icon">
+                      <EastRoundedIcon />
+                    </div>
+                    <div className="button-text">correct</div>
+                  </>
+                )}
+                <CheckCircleIcon fontSize="large" />
+              </div>
+            </Button>
+          </div>
         </div>
       </div>
 

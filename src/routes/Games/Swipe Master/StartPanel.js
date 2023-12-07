@@ -77,47 +77,49 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
-        <div className="game__description-text">
-          <p>
-            Swipe in the appropriate direction (the direction of the arrow).
-          </p>
-          <p style={{ marginTop: 10 }}>
-            Be careful! If the background color of the arrow is red, swipe in
-            the opposite direction.
-          </p>
-          <p style={{ marginTop: 10 }}>
-            You can control by touch (and swiping) or keyboard (arrows).
-          </p>
-        </div>
-        <div className="game__description-buttons">
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              backgroundColor: "#3782bb99",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 20,
-            }}
-          >
-            <div style={{ transform: "scale(0.5)" }}>
-              {arrows[Math.floor(Math.random() * 4)]}
-            </div>
+        <div className="game__description-main">
+          <div className="game__description-main__text">
+            <p>
+              Swipe in the appropriate direction (the direction of the arrow).
+            </p>
+            <p style={{ marginTop: 10 }}>
+              Be careful! If the background color of the arrow is red, swipe in
+              the opposite direction.
+            </p>
+            <p style={{ marginTop: 10 }}>
+              You can control by touch (and swiping) or keyboard (arrows).
+            </p>
           </div>
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              backgroundColor: "#fb00aa99",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 20,
-            }}
-          >
-            <div style={{ transform: "scale(0.5)" }}>
-              {arrows[Math.floor(Math.random() * 4)]}
+          <div className="game__description-main__buttons">
+            <div
+              style={{
+                width: 60,
+                height: 60,
+                backgroundColor: "#3782bb99",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 20,
+              }}
+            >
+              <div style={{ transform: "scale(0.5)" }}>
+                {arrows[Math.floor(Math.random() * 4)]}
+              </div>
+            </div>
+            <div
+              style={{
+                width: 60,
+                height: 60,
+                backgroundColor: "#fb00aa99",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 20,
+              }}
+            >
+              <div style={{ transform: "scale(0.5)" }}>
+                {arrows[Math.floor(Math.random() * 4)]}
+              </div>
             </div>
           </div>
         </div>
