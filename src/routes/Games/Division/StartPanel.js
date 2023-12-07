@@ -38,41 +38,33 @@ const StartPanel = () => {
         {" "}
         <div className="game__description-title">
           <span>Division</span>
+
           <div
+            className="division"
             style={{
-              width: 35,
-              height: 35,
+              width: 26,
+              height: 26,
+              backgroundColor: "#fb00aa",
+              borderRadius: 3,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <div
+            <span
               style={{
-                width: 26,
-                height: 26,
-                backgroundColor: "#fb00aa",
-                borderRadius: 3,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                color: "black",
+                fontWeight: "bold",
+                fontSize: 40,
+                fontFamily: "Quicksand, sans-serif",
+                transform: "rotate(-45deg)",
+                position: "relative",
+                top: -2,
+                left: -2,
               }}
             >
-              <span
-                style={{
-                  color: "black",
-                  fontWeight: "bold",
-                  fontSize: 40,
-                  fontFamily: "Quicksand, sans-serif",
-                  transform: "rotate(-45deg)",
-                  position: "relative",
-                  top: -2,
-                  left: -2,
-                }}
-              >
-                –
-              </span>
-            </div>
+              –
+            </span>
           </div>
         </div>
         <div className="game__description-main">
