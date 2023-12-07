@@ -3,6 +3,7 @@ import { Button, MenuItem, Select } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { BirdWatchingContext } from "../../../contexts/BirdWatchingContext";
+import BirdIMG from "../../../img/bird.svg";
 
 const StartPanel = () => {
   const {
@@ -34,6 +35,22 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
+        <div className="game__description-title">
+          <span>Bird watching</span>
+          <div
+            style={{
+              width: 26,
+              height: 26,
+              backgroundColor: "#fb00aa",
+              borderRadius: 3,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img style={{ width: 25 }} src={BirdIMG} alt="birdwatching" />
+          </div>
+        </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
             <p>Check which colored squares there are the most.</p>

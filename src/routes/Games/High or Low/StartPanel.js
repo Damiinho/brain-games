@@ -1,5 +1,6 @@
 import { Button, MenuItem, Select } from "@mui/material";
 
+import HighOrLowIMG from "../../../img/highorlow.svg";
 import { useCallback, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
@@ -64,6 +65,22 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
+        <div className="game__description-title">
+          <span>High or low</span>
+          <div
+            style={{
+              width: 26,
+              height: 26,
+              backgroundColor: "#fb00aa",
+              borderRadius: 3,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img style={{ width: 25 }} src={HighOrLowIMG} alt="highorlow" />
+          </div>
+        </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
             <p>Judge whether the number is larger or smaller.</p>

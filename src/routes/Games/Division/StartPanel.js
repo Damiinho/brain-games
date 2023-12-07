@@ -1,15 +1,12 @@
 import { Button, MenuItem, Select } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { DivisionContext } from "../../../contexts/DivisionContext";
 
 const StartPanel = () => {
   const {
-    windowWidth,
     time,
     setTime,
     level,
@@ -20,15 +17,6 @@ const StartPanel = () => {
     setCurrentScore,
   } = useContext(DivisionContext);
   const { setIsDivisionStart } = useContext(AppContext);
-
-  const buttonStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 10,
-    fontSize: 20,
-    fontFamily: "Changa, serif",
-  };
 
   const itemStyle = {
     color: "white",
@@ -47,6 +35,46 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
+        {" "}
+        <div className="game__description-title">
+          <span>Division</span>
+          <div
+            style={{
+              width: 35,
+              height: 35,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: 26,
+                height: 26,
+                backgroundColor: "#fb00aa",
+                borderRadius: 3,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  fontSize: 40,
+                  fontFamily: "Quicksand, sans-serif",
+                  transform: "rotate(-45deg)",
+                  position: "relative",
+                  top: -2,
+                  left: -2,
+                }}
+              >
+                –
+              </span>
+            </div>
+          </div>
+        </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
             <p>Check if the division result is correct.</p>
@@ -56,33 +84,8 @@ const StartPanel = () => {
             </p>
           </div>
           <div className="game__description-main__buttons">
-            <Button variant="contained" color="error">
-              <div style={buttonStyle}>
-                {windowWidth > 400 && (
-                  <>
-                    <div className="button-icon">
-                      {" "}
-                      <KeyboardBackspaceRoundedIcon />
-                    </div>
-                    <div className="button-text">incorrect</div>
-                  </>
-                )}
-                <CancelIcon fontSize="large" />
-              </div>
-            </Button>
-            <Button variant="contained" color="success">
-              <div style={buttonStyle}>
-                {windowWidth > 400 && (
-                  <>
-                    <div className="button-icon">
-                      <EastRoundedIcon />
-                    </div>
-                    <div className="button-text">correct</div>
-                  </>
-                )}
-                <CheckCircleIcon fontSize="large" />
-              </div>
-            </Button>
+            <CancelIcon color="error" fontSize="large" />
+            <CheckCircleIcon color="success" fontSize="large" />
           </div>
         </div>
       </div>

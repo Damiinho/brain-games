@@ -3,6 +3,7 @@ import { useCallback, useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { SwipeMasterContext } from "../../../contexts/SwipeMasterContext";
 import { isMobile } from "react-device-detect";
+import KeyboardBackspaceTwoToneIcon from "@mui/icons-material/KeyboardBackspaceTwoTone";
 import {
   EastRounded,
   NorthRounded,
@@ -21,7 +22,7 @@ const StartPanel = () => {
     newQuestion,
     setCurrentScore,
   } = useContext(SwipeMasterContext);
-  const { setIsSwipeMasterStart } = useContext(AppContext);
+  const { setIsSwipeMasterStart, windowWidth } = useContext(AppContext);
   console.log(isMobile);
 
   const toggleFullscreen = useCallback(() => {
@@ -77,6 +78,23 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
+        {" "}
+        <div className="game__description-title">
+          <span>Swipe master</span>
+          <div
+            style={{
+              width: windowWidth > 600 ? 32 : 26,
+              height: windowWidth > 600 ? 32 : 26,
+              backgroundColor: "#fb00aa",
+              borderRadius: 3,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <KeyboardBackspaceTwoToneIcon style={{ color: "black" }} />
+          </div>
+        </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
             <p>
@@ -99,7 +117,7 @@ const StartPanel = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                borderRadius: 20,
+                borderRadius: 10,
               }}
             >
               <div style={{ transform: "scale(0.5)" }}>
@@ -114,7 +132,7 @@ const StartPanel = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                borderRadius: 20,
+                borderRadius: 10,
               }}
             >
               <div style={{ transform: "scale(0.5)" }}>

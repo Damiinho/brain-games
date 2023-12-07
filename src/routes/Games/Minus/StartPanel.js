@@ -1,15 +1,13 @@
 import { Button, MenuItem, Select } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
+import IndeterminateCheckBoxRoundedIcon from "@mui/icons-material/IndeterminateCheckBoxRounded";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { SubtractionContext } from "../../../contexts/SubtractionContext";
 
 const StartPanel = () => {
   const {
-    windowWidth,
     time,
     setTime,
     level,
@@ -22,15 +20,6 @@ const StartPanel = () => {
     setCurrentScore,
   } = useContext(SubtractionContext);
   const { setIsMinusStart } = useContext(AppContext);
-
-  const buttonStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 10,
-    fontSize: 20,
-    fontFamily: "Changa, serif",
-  };
 
   const itemStyle = {
     color: "white",
@@ -49,6 +38,13 @@ const StartPanel = () => {
   return (
     <>
       <div className="game__description">
+        <div className="game__description-title">
+          <span>Subtraction</span>
+          <IndeterminateCheckBoxRoundedIcon
+            fontSize="large"
+            style={{ color: "#d00090" }}
+          />
+        </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
             <p>Check if the subtraction result is correct.</p>
@@ -58,33 +54,8 @@ const StartPanel = () => {
             </p>
           </div>
           <div className="game__description-main__buttons">
-            <Button variant="contained" color="error">
-              <div style={buttonStyle}>
-                {windowWidth > 400 && (
-                  <>
-                    <div className="button-icon">
-                      {" "}
-                      <KeyboardBackspaceRoundedIcon />
-                    </div>
-                    <div className="button-text">incorrect</div>
-                  </>
-                )}
-                <CancelIcon fontSize="large" />
-              </div>
-            </Button>
-            <Button variant="contained" color="success">
-              <div style={buttonStyle}>
-                {windowWidth > 400 && (
-                  <>
-                    <div className="button-icon">
-                      <EastRoundedIcon />
-                    </div>
-                    <div className="button-text">correct</div>
-                  </>
-                )}
-                <CheckCircleIcon fontSize="large" />
-              </div>
-            </Button>
+            <CancelIcon color="error" fontSize="large" />
+            <CheckCircleIcon color="success" fontSize="large" />
           </div>
         </div>
       </div>
