@@ -625,6 +625,69 @@ main {
             }
           }
         }
+        &.followtheleader {
+          margin: 20px auto;
+          width: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          flex-wrap: wrap;
+          gap: 5px;
+
+          &.trainee {
+            > div {
+              width: 30%;
+              aspect-ratio: 1 / 1;
+              border-radius: 10px;
+              cursor: pointer;
+              box-shadow: $material-box-shadow;
+              opacity: 0;
+            }
+            > div.follow {
+              border: 1px solid rgb(97, 97, 97);
+              animation: fadeIn 0.1s ease-in-out forwards;
+            }
+            > div.follow.zero {
+              animation-delay: 0.1s; /* Opóźnienie dla bloku o numerze 0 */
+            }
+
+            > div.follow.one {
+              animation-delay: 0.2s; /* Opóźnienie dla bloku o numerze 1 */
+            }
+
+            > div.follow.two {
+              animation-delay: 0.3s; /* Opóźnienie dla bloku o numerze 2 */
+            }
+            @keyframes fadeIn {
+              to {
+                opacity: 1;
+              }
+            }
+          }
+          &.easy,
+          &.medium {
+            > div {
+              width: 23%;
+              aspect-ratio: 1 / 1;
+              border: 1px solid rgb(97, 97, 97);
+              border-radius: 10px;
+              cursor: pointer;
+              box-shadow: $material-box-shadow;
+            }
+          }
+          &.hard,
+          &.extreme {
+            > div {
+              width: 18%;
+              aspect-ratio: 1 / 1;
+              border: 1px solid rgb(97, 97, 97);
+              border-radius: 10px;
+              cursor: pointer;
+              box-shadow: $material-box-shadow;
+            }
+          }
+        }
       }
       &-buttons {
         display: flex;

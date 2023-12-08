@@ -60,7 +60,7 @@ const QuizPanel = () => {
         setIsWrong={setIsWrong}
       />
       <div
-        className={`game__game-challenge birdwatching ${
+        className={`game__game-challenge followtheleader ${
           level === 1
             ? "trainee"
             : level === 2
@@ -82,12 +82,25 @@ const QuizPanel = () => {
             : "extreme"
         }`}
       >
-        {currentQuestion.blocks.map((block) => {
+        {currentQuestion.blocks.map((block, index) => {
           return (
             <div
               onClick={() => handleCorrect(block.color)}
-              key={block.id}
-              style={{ backgroundColor: block.color }}
+              key={index}
+              style={{ backgroundColor: block.toFollow ? "#3782bb" : null }}
+              className={
+                block.toFollow
+                  ? `follow ${
+                      block.number === 0
+                        ? "zero"
+                        : block.number === 1
+                        ? "one"
+                        : block.number === 2
+                        ? "two"
+                        : ""
+                    }`
+                  : ""
+              }
             ></div>
           );
         })}
