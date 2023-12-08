@@ -14,6 +14,7 @@ import DivisionGame from "./routes/Games/Division/division";
 import BirdWatchingGame from "./routes/Games/BirdWatching/birdwatching";
 import HighOrLowGame from "./routes/Games/High or Low/highorlow";
 import SwipeMasterGame from "./routes/Games/Swipe Master/swipemaster";
+import FollowTheLeaderGame from "./routes/Games/Follow the leader/followtheleader";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "swipemaster",
         element: <SwipeMasterGame />,
+      },
+      {
+        path: "followtheleader",
+        element: <FollowTheLeaderGame />,
       },
     ],
   },

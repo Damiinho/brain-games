@@ -7,6 +7,8 @@ import { LinearGradient } from "react-text-gradients";
 import BirdIMG from "./img/bird.svg";
 import HighOrLowIMG from "./img/highorlow.svg";
 import KeyboardBackspaceTwoToneIcon from "@mui/icons-material/KeyboardBackspaceTwoTone";
+import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
+
 function App() {
   const buttonStyle = {
     color: "#ff00ab",
@@ -159,8 +161,8 @@ function App() {
           </Link>
         </div>
       </div>
-      <div className="games__division">
-        <div className="games__division-title observation">
+      <div className="games__division observation">
+        <div className="games__division-title">
           <LinearGradient gradient={["to left", "#ff68f0 ,#17acff"]}>
             Observation games
           </LinearGradient>
@@ -248,6 +250,32 @@ function App() {
               </div>
             </Button>
           </Link>
+          <Link to={`followtheleader`}>
+            <Button
+              size="small"
+              variant="contained"
+              style={{
+                backgroundColor: "rgb(63, 130, 185, 0.7)",
+              }}
+            >
+              <div style={buttonStyle}>
+                <span style={spanStyle}>Follow the leader</span>
+                <div
+                  style={{
+                    width: 26,
+                    height: 26,
+                    backgroundColor: "#fb00aa",
+                    borderRadius: 3,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <FollowTheSignsIcon style={{ color: "#376085" }} />
+                </div>
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -255,3 +283,28 @@ function App() {
 }
 
 export default App;
+
+// BIG BUTTON VERSION
+
+// <Button
+// variant="contained"
+// style={{
+//   backgroundColor: "rgb(63, 130, 185, 0.7)",
+//   position: "relative",
+//   height: 120,
+//   width: 120,
+//   borderRadius: 15,
+// }}
+// >
+// <span style={{ ...spanStyle, position: "absolute", bottom: -5 }}>
+//   addition
+// </span>
+// <AddBoxRoundedIcon
+//   fontSize="large"
+//   style={{
+//     position: "relative",
+//     top: -10,
+//     transform: "scale(3)",
+//   }}
+// />
+// </Button>

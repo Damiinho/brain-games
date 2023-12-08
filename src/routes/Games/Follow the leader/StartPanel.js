@@ -1,10 +1,9 @@
 import { Button, MenuItem, Select } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
+
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
-import { AdditionContext } from "../../../contexts/AdditionContext";
-import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
+import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
+import { FollowTheLeaderContext } from "../../../contexts/FollowTheLeaderContext";
 
 const StartPanel = () => {
   const {
@@ -16,15 +15,12 @@ const StartPanel = () => {
     setIsWrong,
     newQuestion,
     setCurrentScore,
-    setIsQuickTest,
-    setCurrentTime,
-    bestScore,
-  } = useContext(AdditionContext);
-  const { setIsPlusStart } = useContext(AppContext);
+  } = useContext(FollowTheLeaderContext);
+  const { setIsFollowTheLeaderStart, windowWidth } = useContext(AppContext);
 
   const itemStyle = {
     color: "white",
-    fontFamily: "Changa, serif",
+    fontFamily: "Times New Roman, serif",
     "&:hover": {
       backgroundColor: "#d4009122",
     },
@@ -40,52 +36,32 @@ const StartPanel = () => {
     <>
       <div className="game__description">
         <div className="game__description-title">
-          <span>Addition</span>
-          <AddBoxRoundedIcon style={{ color: "#d00090" }} fontSize="large" />
+          <span>Follow the leader</span>
+          <div
+            style={{
+              width: 26,
+              height: 26,
+              backgroundColor: "#fb00aa",
+              borderRadius: 3,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <FollowTheSignsIcon style={{ color: "black" }} />
+          </div>
         </div>
         <div className="game__description-main">
           <div className="game__description-main__text">
-            <p>Check if the addition result is correct.</p>
+            <p>Check which colored squares there are the most.</p>
             <p style={{ marginTop: 10 }}>
-              You can choose the answer using the mouse, the keyboard (left
-              arrow – bad, right arrow – good) or by touch.
+              You can choose your answer by clicking on any square (by mouse or
+              touch) with the color you think is most abundant.
             </p>
-          </div>
-          <div className="game__description-main__buttons">
-            <CancelIcon color="error" fontSize="large" />
-            <CheckCircleIcon color="success" fontSize="large" />
           </div>
         </div>
       </div>
       <div className="game__modes">
-        <div className="game__modes-element quick">
-          <div className="game__modes-element__title">Quick test</div>
-          <div className="game__modes-element__description">
-            <div>most in 20 seconds</div>
-            <div>best: {bestScore[bestScore.length - 1].best}</div>
-          </div>
-
-          <div className="game__modes-element__start">
-            <Button
-              variant="outlined"
-              size="large"
-              style={{
-                fontFamily: "Changa, serif",
-                fontSize: 25,
-              }}
-              onClick={() => {
-                setIsPlusStart(true);
-                setIsWrong(false);
-                newQuestion();
-                setCurrentScore(0);
-                setCurrentTime(20);
-                setIsQuickTest(true);
-              }}
-            >
-              Start
-            </Button>
-          </div>
-        </div>
         <div className="game__modes-element infinite">
           <div className="game__modes-element__title">Infinite mode</div>
           <div className="game__modes-element__description">
@@ -215,12 +191,10 @@ const StartPanel = () => {
                 fontSize: 25,
               }}
               onClick={() => {
-                setIsPlusStart(true);
+                setIsFollowTheLeaderStart(true);
                 setIsWrong(false);
                 newQuestion();
                 setCurrentScore(0);
-                setIsQuickTest(false);
-                setCurrentTime(time);
               }}
             >
               Start

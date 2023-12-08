@@ -11,6 +11,7 @@ export const AppProvider = ({ children }) => {
   const [isBirdWatchingStart, setIsBirdWatchingStart] = useState(false);
   const [isHighOrLowStart, setIsHighOrLowStart] = useState(false);
   const [isSwipeMasterStart, setIsSwipeMasterStart] = useState(false);
+  const [isFollowTheLeaderStart, setIsFollowTheLeaderStart] = useState(false);
 
   const playSuccessSound = () => {
     const audio = new Audio("/sounds/success.wav");
@@ -43,6 +44,8 @@ export const AppProvider = ({ children }) => {
     playSuccessSound,
     playFailSound,
     playEndSound,
+    isFollowTheLeaderStart,
+    setIsFollowTheLeaderStart,
   };
 
   useEffect(() => {

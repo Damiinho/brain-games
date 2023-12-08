@@ -10,6 +10,7 @@ export default function Root() {
     setIsHighOrLowStart,
     setIsBirdWatchingStart,
     setIsSwipeMasterStart,
+    setIsFollowTheLeaderStart,
   } = useContext(AppContext);
 
   const resetFlag = () => {
@@ -19,6 +20,7 @@ export default function Root() {
     setIsHighOrLowStart(false);
     setIsBirdWatchingStart(false);
     setIsSwipeMasterStart(false);
+    setIsFollowTheLeaderStart(false);
   };
 
   return (
