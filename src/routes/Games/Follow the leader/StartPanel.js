@@ -16,7 +16,7 @@ const StartPanel = () => {
     newQuestion,
     setCurrentScore,
   } = useContext(FollowTheLeaderContext);
-  const { setIsFollowTheLeaderStart, windowWidth } = useContext(AppContext);
+  const { setIsFollowTheLeaderStart } = useContext(AppContext);
 
   const itemStyle = {
     color: "white",
