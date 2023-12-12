@@ -35,6 +35,8 @@ header {
   align-items: center;
   height: 100px;
   gap: 30px;
+  animation: headerAnimation 1s ease-in-out forwards;
+
   a {
     text-decoration: none;
   }
@@ -52,6 +54,28 @@ header {
   }
   .logo {
     width: 70px;
+  }
+
+  @keyframes headerAnimation {
+    0% {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    50% {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    99% {
+      position: absolute;
+      left: 50%;
+      top: 0%;
+      transform: translate(-50%, 0);
+    }
   }
 
   @media screen and (max-width: 400px) {
@@ -80,6 +104,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: mainOpacity 2s ease-in-out forwards;
+  opacity: 0;
 
   .games {
     padding-top: 30px;
@@ -102,7 +128,7 @@ main {
       }
       &-list {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 10px;
       }
@@ -122,6 +148,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    animation: gameOpacity 0.2s ease-in forwards;
 
     &__description {
       font-family: Raleway, serif;
@@ -144,6 +171,7 @@ main {
         text-transform: uppercase;
         gap: 20px;
         font-size: 25px;
+
         span {
           text-align: center;
         }
@@ -199,8 +227,9 @@ main {
       flex-direction: column;
       // align-items: center;
       justify-content: center;
-      margin: 0 10px;
       gap: 10px;
+      width: 100%;
+      padding: 0 10px;
       &-element {
         // margin: 0 auto;
         display: flex;
@@ -259,6 +288,7 @@ main {
         &.quick {
           background-color: #ffffff11;
           flex-direction: row;
+          margin: 0 auto;
 
           .game__modes-element__start {
             width: 100%;
@@ -307,9 +337,9 @@ main {
 
         &.infinite {
           background-color: #ffffff11;
+          margin: 0 auto;
           @media screen and (min-width: 350px) {
             // margin: 10px 10px 0;
-
             max-width: 400px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -728,5 +758,24 @@ main {
         align-items: center;
       }
     }
+  }
+}
+@keyframes mainOpacity {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes gameOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
