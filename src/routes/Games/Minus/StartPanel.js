@@ -25,7 +25,7 @@ const StartPanel = () => {
       backgroundColor: "#d4009122",
     },
     "&.Mui-selected": {
-      backgroundColor: "#d4009122", // Kolor tła dla wybranego elementu
+      backgroundColor: "#d4009122",
       "&:hover": {
         backgroundColor: "#d4009155",
       },
