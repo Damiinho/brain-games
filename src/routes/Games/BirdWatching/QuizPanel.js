@@ -1,6 +1,7 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { BirdWatchingContext } from "../../../contexts/BirdWatchingContext";
 import Timer from "../../../components/Timer";
+import { AppContext } from "../../../contexts/AppContext";
 
 const QuizPanel = () => {
   const {
@@ -17,6 +18,10 @@ const QuizPanel = () => {
     currentTime,
   } = useContext(BirdWatchingContext);
 
+  const { playSuccessSound, playFailSound } = useContext(AppContext);
+
+  const [isCurrentShow, setIsCurrentShow] = useState(false);
+
   const handleCorrect = useCallback(
     (color) => {
       if (currentScore > bestResult.best) {
@@ -28,10 +33,16 @@ const QuizPanel = () => {
           )
         );
       }
+      setIsCurrentShow(false);
       if (currentQuestion.result === color) {
         setCurrentScore(currentScore + 1);
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
+        playSuccessSound();
       } else {
         setIsWrong(true);
+        playFailSound();
       }
       newQuestion();
       setCurrentTime(time);
@@ -47,6 +58,8 @@ const QuizPanel = () => {
       currentQuestion,
       setCurrentTime,
       newQuestion,
+      playSuccessSound,
+      playFailSound,
     ]
   );
 
@@ -80,7 +93,7 @@ const QuizPanel = () => {
             : currentScore < 21
             ? "hard"
             : "extreme"
-        }`}
+        } current ${isCurrentShow || currentScore === 0 ? "show" : ""}`}
       >
         {currentQuestion.blocks.map((block) => {
           return (

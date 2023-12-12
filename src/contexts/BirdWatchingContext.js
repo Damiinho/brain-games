@@ -44,6 +44,7 @@ export const BirdWatchingProvider = ({ children }) => {
   ]);
 
   const newQuestion = () => {
+    const oldQuestion = currentQuestion.blocks;
     let blocks = [];
     let result = "";
     if (level === 1) {
@@ -503,7 +504,7 @@ export const BirdWatchingProvider = ({ children }) => {
       }
     }
 
-    setCurrentQuestion({ blocks, result });
+    setCurrentQuestion({ blocks, result, oldQuestion });
     setCurrentTime(time);
   };
 

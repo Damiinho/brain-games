@@ -620,9 +620,12 @@ main {
           display: flex;
           justify-content: center;
           align-items: center;
-
           flex-wrap: wrap;
           gap: 5px;
+
+          &.show {
+            animation: currentShow 0.2s ease-in forwards;
+          }
 
           &.trainee {
             > div {
@@ -655,6 +658,40 @@ main {
               cursor: pointer;
               box-shadow: $material-box-shadow;
             }
+          }
+        }
+        @keyframes currentShow {
+          0% {
+            opacity: 0;
+            display: none;
+          }
+          50% {
+            opacity: 0;
+            display: none;
+          }
+          51% {
+            display: flex;
+          }
+          100% {
+            display: flex;
+            opacity: 1;
+          }
+        }
+        @keyframes oldHide {
+          0% {
+            opacity: 1;
+            display: flex;
+          }
+          30% {
+            opacity: 0;
+            display: flex;
+          }
+          31% {
+            display: none;
+          }
+          100% {
+            opacity: 0;
+            display: none;
           }
         }
         &.followtheleader {
