@@ -84,8 +84,16 @@ export const SubtractionProvider = ({ children }) => {
     { level: 4, time: 5, best: 0 },
     { level: 5, time: 5, best: 0 },
     { level: 6, time: 5, best: 0 },
+    { level: "quiqTest", best: 0 },
   ]);
   const newQuestion = () => {
+    const oldQuestion = {
+      firstNumber: currentQuestion.firstNumber,
+      secondNumber: currentQuestion.secondNumber,
+      result: currentQuestion.result,
+      possibleResults: currentQuestion.possibleResults,
+      visibleResult: currentQuestion.visibleResult,
+    };
     const possibleNumbers =
       level === 1
         ? numbers.trainee
@@ -142,6 +150,7 @@ export const SubtractionProvider = ({ children }) => {
       result: result,
       possibleResults: possible,
       visibleResult: possible[Math.floor(Math.random() * 8)],
+      oldQuestion: oldQuestion || null,
     });
     setCurrentTime(time);
   };
