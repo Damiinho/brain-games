@@ -424,7 +424,8 @@ main {
         text-align: center;
         font-size: 100px;
 
-        &.addition {
+        &.addition,
+        &.subtraction {
           height: 250px;
           width: 100%;
           overflow: hidden;

@@ -1,10 +1,11 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { SubtractionContext } from "../../../contexts/SubtractionContext";
 import Timer from "../../../components/Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Textfit } from "react-textfit";
+import { AppContext } from "../../../contexts/AppContext";
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",
@@ -13,7 +14,6 @@ const buttonStyle = {
   fontSize: 20,
   fontFamily: "Changa, serif",
 };
-
 const QuizPanel = () => {
   const {
     level,
@@ -30,54 +30,9 @@ const QuizPanel = () => {
     currentTime,
   } = useContext(SubtractionContext);
 
-  //   const possibleNumbers =
-  //     level === 1
-  //       ? numbers.trainee
-  //       : level === 2
-  //       ? numbers.easy
-  //       : level === 3
-  //       ? numbers.medium
-  //       : level === 4
-  //       ? numbers.hard
-  //       : level === 5
-  //       ? numbers.extreme
-  //       : null;
-  //   const numberOfNumbers =
-  //     level === 1
-  //       ? 5
-  //       : level === 2
-  //       ? 10
-  //       : level === 3
-  //       ? 20
-  //       : level === 4
-  //       ? 50
-  //       : level === 5
-  //       ? 100
-  //       : null;
+  const { playSuccessSound, playFailSound } = useContext(AppContext);
 
-  //   const first = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-  //   const second = possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-  //   const result = first > second ? first - second : second - first;
-  //   const possible = [
-  //     result,
-  //     result,
-  //     result,
-  //     result,
-  //     result - 2,
-  //     result - 1,
-  //     result + 2,
-  //     result + 1,
-  //   ];
-  //   setCurrentQuestion({
-  //     firstNumber: first,
-  //     secondNumber: second,
-  //     result: result,
-  //     possibleResults: possible,
-  //     visibleResult: possible[Math.floor(Math.random() * 8)],
-  //   });
-  //   setCurrentTime(time);
-  // }, [time, numbers, setCurrentTime, setCurrentQuestion, level]);
-
+  const [isCurrentShow, setIsCurrentShow] = useState(false);
   const handleIncorrect = useCallback(() => {
     if (!isWrong) {
       if (currentScore > bestResult.best) {
@@ -89,10 +44,17 @@ const QuizPanel = () => {
           )
         );
       }
+
+      setIsCurrentShow(false);
       if (!(currentQuestion.result === currentQuestion.visibleResult)) {
         setCurrentScore(currentScore + 1);
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
+        playSuccessSound();
       } else {
         setIsWrong(true);
+        playFailSound();
       }
       newQuestion();
       setCurrentTime(time);
@@ -109,6 +71,8 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    playSuccessSound,
+    playFailSound,
   ]);
 
   const handleCorrect = useCallback(() => {
@@ -122,10 +86,16 @@ const QuizPanel = () => {
           )
         );
       }
+      setIsCurrentShow(false);
       if (currentQuestion.result === currentQuestion.visibleResult) {
         setCurrentScore(currentScore + 1);
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
+        playSuccessSound();
       } else {
         setIsWrong(true);
+        playFailSound();
       }
       newQuestion();
       setCurrentTime(time);
@@ -142,6 +112,8 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    playSuccessSound,
+    playFailSound,
   ]);
 
   const handleKeyDown = useCallback(
@@ -173,14 +145,33 @@ const QuizPanel = () => {
         currentTime={currentTime}
         setIsWrong={setIsWrong}
       />
-      <div className="game__game-challenge">
-        <Textfit mode="single">
-          {currentQuestion.firstNumber > currentQuestion.secondNumber
-            ? `${currentQuestion.firstNumber} - ${currentQuestion.secondNumber}`
-            : `${currentQuestion.secondNumber} - ${currentQuestion.firstNumber}`}{" "}
-          = {currentQuestion.visibleResult}
-        </Textfit>
+
+      <div className="game__game-challenge subtraction">
+        <div
+          className={`current ${
+            isCurrentShow || currentScore === 0 ? "show" : ""
+          }`}
+        >
+          <Textfit mode="single">
+            {currentQuestion.firstNumber > currentQuestion.secondNumber
+              ? `${currentQuestion.firstNumber} - ${currentQuestion.secondNumber}`
+              : `${currentQuestion.secondNumber} - ${currentQuestion.firstNumber}`}{" "}
+            = {currentQuestion.visibleResult}
+          </Textfit>
+        </div>
+        {currentScore > 0 && (
+          <div className={`old ${isCurrentShow ? "hide" : ""}`}>
+            <Textfit mode="single">
+              {currentQuestion.oldQuestion.firstNumber >
+              currentQuestion.oldQuestion.secondNumber
+                ? `${currentQuestion.oldQuestion.firstNumber} - ${currentQuestion.oldQuestion.secondNumber}`
+                : `${currentQuestion.oldQuestion.secondNumber} - ${currentQuestion.oldQuestion.firstNumber}`}{" "}
+              = {currentQuestion.oldQuestion.visibleResult}
+            </Textfit>
+          </div>
+        )}
       </div>
+
       <div className="game__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>
           <div style={buttonStyle}>
