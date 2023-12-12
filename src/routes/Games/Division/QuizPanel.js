@@ -1,10 +1,11 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { DivisionContext } from "../../../contexts/DivisionContext";
 import Timer from "../../../components/Timer";
 import { Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Textfit } from "react-textfit";
+import { AppContext } from "../../../contexts/AppContext";
 const buttonStyle = {
   display: "flex",
   justifyContent: "center",
@@ -30,6 +31,10 @@ const QuizPanel = () => {
     currentTime,
   } = useContext(DivisionContext);
 
+  const { playSuccessSound, playFailSound } = useContext(AppContext);
+
+  const [isCurrentShow, setIsCurrentShow] = useState(false);
+
   const handleIncorrect = useCallback(() => {
     if (!isWrong) {
       if (currentScore > bestResult.best) {
@@ -41,10 +46,16 @@ const QuizPanel = () => {
           )
         );
       }
+      setIsCurrentShow(false);
       if (!(currentQuestion.result === currentQuestion.visibleResult)) {
         setCurrentScore(currentScore + 1);
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
+        playSuccessSound();
       } else {
         setIsWrong(true);
+        playFailSound();
       }
       newQuestion();
       setCurrentTime(time);
@@ -61,6 +72,8 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    playSuccessSound,
+    playFailSound,
   ]);
 
   const handleCorrect = useCallback(() => {
@@ -74,10 +87,16 @@ const QuizPanel = () => {
           )
         );
       }
+      setIsCurrentShow(false);
       if (currentQuestion.result === currentQuestion.visibleResult) {
         setCurrentScore(currentScore + 1);
+        setTimeout(() => {
+          setIsCurrentShow(true);
+        }, 10);
+        playSuccessSound();
       } else {
         setIsWrong(true);
+        playFailSound();
       }
       newQuestion();
       setCurrentTime(time);
@@ -94,6 +113,8 @@ const QuizPanel = () => {
     currentQuestion,
     setCurrentTime,
     newQuestion,
+    playSuccessSound,
+    playFailSound,
   ]);
 
   const handleKeyDown = useCallback(
@@ -125,13 +146,30 @@ const QuizPanel = () => {
         currentTime={currentTime}
         setIsWrong={setIsWrong}
       />
-      <div className="game__game-challenge">
-        <Textfit mode="single">
-          {parseFloat(currentQuestion.firstNumber.toFixed(2))} /{" "}
-          {parseFloat(currentQuestion.secondNumber.toFixed(2))} ={" "}
-          {parseFloat(currentQuestion.visibleResult.toFixed(2))}
-        </Textfit>
+      <div className="game__game-challenge division">
+        <div
+          className={`current ${
+            isCurrentShow || currentScore === 0 ? "show" : ""
+          }`}
+        >
+          <Textfit mode="single">
+            {parseFloat(currentQuestion.firstNumber.toFixed(2))} /{" "}
+            {parseFloat(currentQuestion.secondNumber.toFixed(2))} ={" "}
+            {parseFloat(currentQuestion.visibleResult.toFixed(2))}
+          </Textfit>
+        </div>
+        {currentScore > 0 && (
+          <div className={`old ${isCurrentShow ? "hide" : ""}`}>
+            <Textfit mode="single">
+              {parseFloat(currentQuestion.oldQuestion.firstNumber.toFixed(2))} /{" "}
+              {parseFloat(currentQuestion.oldQuestion.secondNumber.toFixed(2))}{" "}
+              ={" "}
+              {parseFloat(currentQuestion.oldQuestion.visibleResult.toFixed(2))}
+            </Textfit>
+          </div>
+        )}
       </div>
+
       <div className="game__game-buttons">
         <Button variant="contained" color="error" onClick={handleIncorrect}>
           <div style={buttonStyle}>

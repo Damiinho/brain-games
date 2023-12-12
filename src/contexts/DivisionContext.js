@@ -334,6 +334,12 @@ export const DivisionProvider = ({ children }) => {
   ]);
 
   const newQuestion = () => {
+    const oldQuestion = {
+      firstNumber: currentQuestion.firstNumber,
+      secondNumber: currentQuestion.secondNumber,
+      result: currentQuestion.result,
+      visibleResult: currentQuestion.visibleResult,
+    };
     const possibleNumbers =
       level === 1
         ? numbers.trainee
@@ -368,6 +374,7 @@ export const DivisionProvider = ({ children }) => {
       secondNumber: second,
       result: result,
       visibleResult: visibleResult,
+      oldQuestion: oldQuestion || null,
     });
     setCurrentTime(time);
   };

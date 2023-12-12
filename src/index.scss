@@ -425,7 +425,8 @@ main {
         font-size: 100px;
 
         &.addition,
-        &.subtraction {
+        &.subtraction,
+        &.division {
           height: 250px;
           width: 100%;
           overflow: hidden;
