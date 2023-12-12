@@ -14,10 +14,7 @@ const StartPanel = () => {
     setLevel,
     bestResult,
     setIsWrong,
-    setCurrentTime,
-    setCurrentQuestion,
-    numbers,
-    setCurrentScore,
+    newQuestion,
   } = useContext(SubtractionContext);
   const { setIsMinusStart } = useContext(AppContext);
 
@@ -192,56 +189,7 @@ const StartPanel = () => {
               onClick={() => {
                 setIsMinusStart(true);
                 setIsWrong(false);
-                const possibleNumbers =
-                  level === 1
-                    ? numbers.trainee
-                    : level === 2
-                    ? numbers.easy
-                    : level === 3
-                    ? numbers.medium
-                    : level === 4
-                    ? numbers.hard
-                    : level === 5
-                    ? numbers.extreme
-                    : null;
-                const numberOfNumbers =
-                  level === 1
-                    ? 5
-                    : level === 2
-                    ? 10
-                    : level === 3
-                    ? 20
-                    : level === 4
-                    ? 50
-                    : level === 5
-                    ? 100
-                    : null;
-
-                const first =
-                  possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-                const second =
-                  possibleNumbers[Math.floor(Math.random() * numberOfNumbers)];
-
-                const result = first > second ? first - second : second - first;
-                const possible = [
-                  result,
-                  result,
-                  result,
-                  result,
-                  result - 2,
-                  result - 1,
-                  result + 2,
-                  result + 1,
-                ];
-                setCurrentQuestion({
-                  firstNumber: first,
-                  secondNumber: second,
-                  result: result,
-                  possibleResults: possible,
-                  visibleResult: possible[Math.floor(Math.random() * 8)],
-                });
-                setCurrentScore(0);
-                setCurrentTime(time);
+                newQuestion();
               }}
             >
               Start
