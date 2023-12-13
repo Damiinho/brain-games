@@ -13,9 +13,10 @@ function App() {
   const buttonStyle = {
     color: "#ff00ab",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     gap: 10,
+    width: 240,
   };
 
   const spanStyle = {

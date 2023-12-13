@@ -114,9 +114,11 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    margin: 0 10px;
     &__division {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       gap: 10px;
       &-title {
@@ -128,8 +130,9 @@ main {
       }
       &-list {
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 10px;
       }
       &.observation {
@@ -138,8 +141,16 @@ main {
         }
       }
     }
-  }
 
+    @media screen and (min-width: 600px) {
+      &__division {
+        &-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+  }
   .game {
     height: 100%;
     width: 100%;
