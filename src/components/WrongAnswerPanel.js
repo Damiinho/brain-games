@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
+import { useContext } from "react";
 import { Textfit } from "react-textfit";
+import { AppContext } from "../contexts/AppContext";
 
 const WrongAnswerPanel = (props) => {
   const {
@@ -15,6 +17,7 @@ const WrongAnswerPanel = (props) => {
     setIsThisQuizStart,
     id,
   } = props;
+  const { toggleFullscreen } = useContext(AppContext);
 
   return (
     <div className="game__game">
@@ -47,6 +50,7 @@ const WrongAnswerPanel = (props) => {
             if (setIsQuickTest) {
               setIsQuickTest(false);
             }
+            toggleFullscreen("leave");
           }}
           style={{
             fontFamily: "Changa, serif",

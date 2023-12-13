@@ -11,6 +11,7 @@ export default function Root() {
     setIsBirdWatchingStart,
     setIsSwipeMasterStart,
     setIsFollowTheLeaderStart,
+    toggleFullscreen,
   } = useContext(AppContext);
 
   const resetFlag = () => {
@@ -21,6 +22,7 @@ export default function Root() {
     setIsBirdWatchingStart(false);
     setIsSwipeMasterStart(false);
     setIsFollowTheLeaderStart(false);
+    toggleFullscreen("leave");
   };
 
   return (

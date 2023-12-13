@@ -1,5 +1,5 @@
 import { Button, MenuItem, Select } from "@mui/material";
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { SwipeMasterContext } from "../../../contexts/SwipeMasterContext";
 import { isMobile } from "react-device-detect";
@@ -22,37 +22,8 @@ const StartPanel = () => {
     newQuestion,
     setCurrentScore,
   } = useContext(SwipeMasterContext);
-  const { setIsSwipeMasterStart, windowWidth } = useContext(AppContext);
-  console.log(isMobile);
-
-  const toggleFullscreen = useCallback(() => {
-    const element = document.documentElement;
-    if (isMobile) {
-      if (
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement
-      ) {
-        // Wyjdź z trybu pełnoekranowego, jeśli jesteśmy już w nim
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        }
-      } else {
-        // Wejdź w tryb pełnoekranowy
-        if (element.requestFullscreen) {
-          element.requestFullscreen();
-        } else if (element.webkitRequestFullscreen) {
-          element.webkitRequestFullscreen();
-        } else if (element.mozRequestFullScreen) {
-          element.mozRequestFullScreen();
-        }
-      }
-    }
-  }, []);
+  const { setIsSwipeMasterStart, windowWidth, toggleFullscreen } =
+    useContext(AppContext);
 
   const itemStyle = {
     color: "white",
@@ -276,7 +247,9 @@ const StartPanel = () => {
                 setIsWrong(false);
                 newQuestion();
                 setCurrentScore(0);
-                toggleFullscreen();
+                if (isMobile) {
+                  toggleFullscreen("enter");
+                }
               }}
             >
               Start

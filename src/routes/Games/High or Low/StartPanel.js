@@ -1,7 +1,7 @@
 import { Button, MenuItem, Select } from "@mui/material";
 
 import HighOrLowIMG from "../../../img/highorlow.svg";
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { HighOrLowContext } from "../../../contexts/HighOrLowContext";
 import { isMobile } from "react-device-detect";
@@ -17,36 +17,7 @@ const StartPanel = () => {
     newQuestion,
     setCurrentScore,
   } = useContext(HighOrLowContext);
-  const { setIsHighOrLowStart } = useContext(AppContext);
-
-  const toggleFullscreen = useCallback(() => {
-    const element = document.documentElement;
-    if (isMobile) {
-      if (
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement
-      ) {
-        // Wyjdź z trybu pełnoekranowego, jeśli jesteśmy już w nim
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        }
-      } else {
-        // Wejdź w tryb pełnoekranowy
-        if (element.requestFullscreen) {
-          element.requestFullscreen();
-        } else if (element.webkitRequestFullscreen) {
-          element.webkitRequestFullscreen();
-        } else if (element.mozRequestFullScreen) {
-          element.mozRequestFullScreen();
-        }
-      }
-    }
-  }, []);
+  const { setIsHighOrLowStart, toggleFullscreen } = useContext(AppContext);
 
   const itemStyle = {
     color: "white",
@@ -226,7 +197,9 @@ const StartPanel = () => {
                 setIsWrong(false);
                 newQuestion();
                 setCurrentScore(-1);
-                toggleFullscreen();
+                if (isMobile) {
+                  toggleFullscreen("enter");
+                }
               }}
             >
               Start

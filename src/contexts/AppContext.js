@@ -26,6 +26,41 @@ export const AppProvider = ({ children }) => {
     audio.play();
   };
 
+  const toggleFullscreen = (action) => {
+    const element = document.documentElement;
+    if (
+      action === "leave" &&
+      (document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement)
+    ) {
+      // Wyjdź z trybu pełnoekranowego, jeśli jesteśmy już w nim
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      }
+    } else if (
+      action === "enter" &&
+      !(
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement
+      )
+    ) {
+      // Wejdź w tryb pełnoekranowy
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      }
+    }
+  };
+
   const providerValue = {
     windowWidth,
 
@@ -46,6 +81,7 @@ export const AppProvider = ({ children }) => {
     playEndSound,
     isFollowTheLeaderStart,
     setIsFollowTheLeaderStart,
+    toggleFullscreen,
   };
 
   useEffect(() => {
